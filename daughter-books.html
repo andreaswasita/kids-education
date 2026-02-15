@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books &amp; Resources — Year 5 Daughter</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --primary-light: #2e86c1;
+            --accent: #e67e22;
+            --green: #27ae60;
+            --purple: #8e44ad;
+            --red: #c0392b;
+            --pink: #e91e8c;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #e0e0e0;
+            --pink-bg: #fce4ec;
+            --purple-bg: #f4ecf7;
+            --green-bg: #eafaf1;
+            --orange-bg: #fef5e7;
+            --blue-bg: #eaf2f8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .hero { background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%); color: white; padding: 2.5rem 2rem; text-align: center; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
+        .hero p { opacity: 0.9; }
+        .hero .tags { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+        .hero .tag-pill { background: rgba(255,255,255,0.2); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; }
+        nav.breadcrumb { background: var(--card-bg); padding: 0.8rem 2rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        nav.breadcrumb a { color: var(--primary-light); text-decoration: none; }
+        nav.breadcrumb a:hover { text-decoration: underline; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; border-bottom: 2px solid var(--border); padding-bottom: 0; }
+        .tab { padding: 0.7rem 1.2rem; border: none; background: transparent; cursor: pointer; font-size: 0.95rem; font-weight: 600; color: var(--text-light); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab:hover { color: var(--primary); }
+        .tab.active { color: var(--purple); border-bottom-color: var(--pink); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        h2 { color: var(--purple); margin: 2rem 0 0.8rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
+        h3 { color: var(--purple); margin: 1.5rem 0 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        thead th { background: var(--purple); color: white; padding: 0.8rem 1rem; text-align: left; font-size: 0.9rem; }
+        tbody td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: top; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:nth-child(even) { background: #f9f9f9; }
+        .highlight-row { background: var(--pink-bg) !important; font-weight: 600; }
+        .shopping-list { background: #fff9e6; border: 2px solid #f0c040; border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; }
+        .shopping-list h3 { color: #b7950b; margin-top: 0; }
+        .checklist { list-style: none; padding: 0; }
+        .checklist li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li::before { content: "☐ "; font-size: 1.1rem; }
+        .price { color: var(--green); font-weight: 600; }
+        .tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 0.3rem; }
+        .tag.buy { background: #d4efdf; color: #1e8449; }
+        .tag.library { background: #d6eaf8; color: #1a5276; }
+        .tag.essential { background: #fdedec; color: #c0392b; }
+        .tag.online { background: #e8daef; color: #6c3483; }
+        .tag.free { background: #d5f5e3; color: #1e8449; }
+        .info-box { background: #f4ecf7; border-left: 4px solid var(--purple); border-radius: 8px; padding: 0.8rem 1.2rem; margin: 0.8rem 0; font-size: 0.9rem; }
+        .info-box.warning { background: #fdf2e9; border-left-color: var(--accent); }
+        .info-box.danger { background: #fdedec; border-left-color: var(--red); }
+        .info-box.success { background: var(--green-bg); border-left-color: var(--green); }
+        .section-header { padding: 0.8rem 1.2rem; border-radius: 8px; margin: 1.5rem 0 0.5rem; font-weight: 700; font-size: 1rem; }
+        .section-header.purple { background: var(--purple-bg); color: var(--purple); border-left: 4px solid var(--purple); }
+        .section-header.pink { background: var(--pink-bg); color: #c2185b; border-left: 4px solid var(--pink); }
+        .section-header.green { background: var(--green-bg); color: #1e8449; border-left: 4px solid var(--green); }
+        .section-header.orange { background: var(--orange-bg); color: #d35400; border-left: 4px solid var(--accent); }
+        .section-header.blue { background: var(--blue-bg); color: var(--primary); border-left: 4px solid var(--primary-light); }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin: 1.5rem 0; }
+        .resource-card { background: var(--card-bg); border-radius: 10px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 4px solid var(--purple); }
+        .resource-card h4 { color: var(--purple); margin-bottom: 0.5rem; }
+        .resource-card p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.3rem; }
+        .resource-card .card-price { font-weight: 700; color: var(--green); }
+        .book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .book-card { background: var(--card-bg); border-radius: 10px; padding: 1rem; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .book-card h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 0.3rem; }
+        .book-card .author { font-size: 0.85rem; color: var(--text-light); }
+        .book-card .why { font-size: 0.85rem; margin-top: 0.4rem; color: var(--text); }
+        .summary-card { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 10px; padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-weight: 600; text-align: center; font-size: 0.95rem; color: var(--text); }
+        footer { text-align: center; padding: 2rem; color: var(--text-light); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        @media print { .hero, nav, .tabs, footer { display: none; } .tab-content { display: block !important; } }
+        @media (max-width: 600px) { .hero h1 { font-size: 1.6rem; } .tab { padding: 0.5rem 0.7rem; font-size: 0.8rem; } table { font-size: 0.8rem; } thead th, tbody td { padding: 0.5rem; } }
+    </style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+    <a href="index.html">🏠 Home</a> &rsaquo; <a href="daughter.html">📝 Daughter</a> &rsaquo; Books &amp; Resources
+</nav>
+
+<div class="hero">
+    <h1>📚 Books &amp; Resources — Year 5</h1>
+    <p>NAPLAN workbooks, scholarship prep, maths boost, and reading for pleasure</p>
+    <div class="tags">
+        <span class="tag-pill">📖 Strong: Reading &amp; Grammar</span>
+        <span class="tag-pill">🔢 Focus: Maths</span>
+        <span class="tag-pill">🏫 Target: Scholarship</span>
+        <span class="tag-pill">📝 NAPLAN March 2026</span>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('shopping')">🛒 Shopping List</button>
+        <button class="tab" onclick="showTab('naplan-books')">📝 NAPLAN</button>
+        <button class="tab" onclick="showTab('scholarship-books')">🏫 Scholarship</button>
+        <button class="tab" onclick="showTab('maths-books')">🔢 Maths Boost</button>
+        <button class="tab" onclick="showTab('reading')">📖 Reading</button>
+        <button class="tab" onclick="showTab('apps')">📱 Apps &amp; Online</button>
+        <button class="tab" onclick="showTab('writing')">✍️ Writing</button>
+    </div>
+
+    <!-- ===================== SHOPPING LIST TAB ===================== -->
+    <div id="shopping" class="tab-content active">
+
+        <div class="info-box danger">
+            🚨 <strong>NAPLAN is ~4 weeks away (mid-March 2026)!</strong> Get Priority 1 items THIS WEEK. Focus spending on maths — her weak area.
+        </div>
+
+        <div class="shopping-list">
+            <h3>🛒 Priority 1 — Buy THIS WEEK (~$40)</h3>
+            <p style="color: #7d6608; margin-bottom: 0.8rem;">These are urgent — NAPLAN is weeks away and maths needs daily practice.</p>
+            <ul class="checklist">
+                <li><strong>Excel NAPLAN-style Tests Year 5 — Numeracy</strong> <span class="price">~$13</span> — Big W, Newsagent <span class="tag essential">ESSENTIAL</span></li>
+                <li><strong>Excel Mental Maths Year 5</strong> <span class="price">~$8</span> — Big W, Newsagent <span class="tag essential">ESSENTIAL</span></li>
+                <li><strong>Excel NAPLAN-style Tests Year 5 — Reading</strong> <span class="price">~$13</span> — Big W, Newsagent</li>
+                <li><strong>A5 exercise book for timed writing</strong> <span class="price">~$3</span> — Anywhere</li>
+            </ul>
+        </div>
+
+        <div class="shopping-list">
+            <h3>🛒 Priority 2 — Buy Within 2 Weeks (~$67)</h3>
+            <p style="color: #7d6608; margin-bottom: 0.8rem;">Scholarship prep and deeper practice. Can order online.</p>
+            <ul class="checklist">
+                <li><strong>Excel Revise in a Month — NAPLAN Year 5 Numeracy</strong> <span class="price">~$13</span> — Big W</li>
+                <li><strong>Excel Test Zone NAPLAN Year 5 — Language Conventions</strong> <span class="price">~$13</span> — Big W</li>
+                <li><strong>ACER Scholarship Practice Tests</strong> (if targeting ACER schools) <span class="price">~$20–25</span> — ACER website</li>
+                <li><strong>EduTest Scholarship Practice Papers</strong> (if targeting EduTest schools) <span class="price">~$20–25</span> — edutest.com.au</li>
+                <li><strong>Mathletics subscription</strong> (optional — IXL may be enough) <span class="price">~$99/yr</span> — mathletics.com</li>
+            </ul>
+        </div>
+
+        <div class="shopping-list">
+            <h3>🛒 Priority 3 — Scholarship Prep Books (~$80)</h3>
+            <p style="color: #7d6608; margin-bottom: 0.8rem;">For longer-term scholarship exam preparation. Buy after NAPLAN.</p>
+            <ul class="checklist">
+                <li><strong>James An's Selective Schools &amp; Scholarship Tests — Maths</strong> <span class="price">~$25</span> — Amazon, Bookworld</li>
+                <li><strong>James An's Selective Schools &amp; Scholarship Tests — Verbal Reasoning</strong> <span class="price">~$25</span> — Amazon</li>
+                <li><strong>James An's Selective Schools &amp; Scholarship Tests — General Ability</strong> <span class="price">~$25</span> — Amazon</li>
+                <li><strong>Thinking Skills Workbook Year 5/6</strong> <span class="price">~$15</span> — OC/selective prep publishers</li>
+            </ul>
+        </div>
+
+        <div class="shopping-list">
+            <h3>📚 Borrow from Library This Weekend</h3>
+            <p style="color: #7d6608; margin-bottom: 0.8rem;">Chapter books for reading pleasure. Builds vocabulary and comprehension naturally.</p>
+            <ul class="checklist">
+                <li>Harry Potter and the Philosopher's Stone — J.K. Rowling</li>
+                <li>Percy Jackson: The Lightning Thief — Rick Riordan</li>
+                <li>Wonder — R.J. Palacio</li>
+                <li>Matilda — Roald Dahl</li>
+                <li>Holes — Louis Sachar</li>
+                <li>The One and Only Ivan — Katherine Applegate</li>
+            </ul>
+        </div>
+
+        <div class="summary-card">
+            💰 Total to get started: ~$40 (Priority 1). Full NAPLAN + Scholarship kit: ~$190. Use the library for reading books!
+        </div>
+    </div>
+
+    <!-- ===================== NAPLAN BOOKS TAB ===================== -->
+    <div id="naplan-books" class="tab-content">
+        <h2>📝 NAPLAN Practice Books &amp; Workbooks</h2>
+
+        <div class="info-box">
+            🎯 <strong>Strategy:</strong> Buy the <strong>Excel NAPLAN-style</strong> series — it's the most widely used in NSW and matches the actual test format well. Focus buying on <strong>Numeracy</strong> (her weak area).
+        </div>
+
+        <div class="section-header purple">📐 Numeracy (Her Priority — Weak Area)</div>
+        <table>
+            <thead><tr><th>Book</th><th>Publisher</th><th>What It Covers</th><th>Cost</th><th>Get It</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>Excel NAPLAN-style Tests Year 5 — Numeracy</strong></td><td>Pascal Press</td><td>Full practice tests matching NAPLAN format. Timed sections.</td><td>~$13</td><td><span class="tag essential">GET NOW</span></td></tr>
+                <tr class="highlight-row"><td><strong>Excel Mental Maths Year 5</strong></td><td>Pascal Press</td><td>Daily mental maths practice. 2 pages/day. Builds speed.</td><td>~$8</td><td><span class="tag essential">GET NOW</span></td></tr>
+                <tr><td><strong>Excel Revise in a Month — NAPLAN Year 5 Numeracy</strong></td><td>Pascal Press</td><td>4-week structured revision plan. Perfect for sprint prep.</td><td>~$13</td><td><span class="tag buy">BUY</span></td></tr>
+                <tr><td><strong>Excel Basic Skills — Fractions, Decimals &amp; Percentages Year 5</strong></td><td>Pascal Press</td><td>Deep dive into fractions (her weakest maths topic).</td><td>~$10</td><td><span class="tag buy">BUY</span></td></tr>
+                <tr><td><strong>Excel Basic Skills — Multiplication &amp; Division Year 5</strong></td><td>Pascal Press</td><td>Times tables mastery, long division, word problems.</td><td>~$10</td><td><span class="tag buy">BUY</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header green">📖 Reading &amp; Language Conventions (Her Strengths — Maintain)</div>
+        <table>
+            <thead><tr><th>Book</th><th>Publisher</th><th>What It Covers</th><th>Cost</th><th>Get It</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Excel NAPLAN-style Tests Year 5 — Reading</strong></td><td>Pascal Press</td><td>Practice passages with multiple-choice questions. Inference, main idea, vocab.</td><td>~$13</td><td><span class="tag buy">BUY</span></td></tr>
+                <tr><td><strong>Excel Test Zone NAPLAN Year 5 — Language Conventions</strong></td><td>Pascal Press</td><td>Spelling, grammar, punctuation practice matching NAPLAN format.</td><td>~$13</td><td><span class="tag buy">BUY</span></td></tr>
+                <tr><td><strong>Excel Revise in a Month — NAPLAN Year 5 Literacy</strong></td><td>Pascal Press</td><td>4-week structured revision for reading + conventions.</td><td>~$13</td><td><span class="tag library">OPTIONAL</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header orange">✍️ Writing</div>
+        <table>
+            <thead><tr><th>Book</th><th>Publisher</th><th>What It Covers</th><th>Cost</th><th>Get It</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Excel NAPLAN-style Tests Year 5 — Writing</strong></td><td>Pascal Press</td><td>Persuasive &amp; narrative prompts with marking rubrics.</td><td>~$13</td><td><span class="tag buy">BUY</span></td></tr>
+                <tr><td><strong>A5 exercise book</strong></td><td>Any</td><td>For timed writing practice (25-min sessions). Date each entry.</td><td>~$3</td><td><span class="tag essential">GET NOW</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="info-box success">
+            💡 <strong>Tip:</strong> NAPLAN practice tests are also available FREE online at <a href="https://www.nap.edu.au/online-assessment/public-demonstration-site" target="_blank" style="color: var(--green);">nap.edu.au</a>. Use these for realistic online practice (NAPLAN is done online now).
+        </div>
+    </div>
+
+    <!-- ===================== SCHOLARSHIP BOOKS TAB ===================== -->
+    <div id="scholarship-books" class="tab-content">
+        <h2>🏫 Scholarship Prep Books</h2>
+
+        <div class="info-box warning">
+            ⚠️ <strong>Important:</strong> Different schools use different test providers. Check which test YOUR target school uses before buying.<br>
+            <strong>ACER:</strong> Barker, Cranbrook, Knox, Newington, PLC, SCECGS Redlands, Shore, Trinity<br>
+            <strong>EduTest:</strong> Abbotsleigh, MLC, Pymble, SCEGGS Darlinghurst, St Catherine's, Wenona<br>
+            <strong>School-specific:</strong> Sydney Grammar, SCEGGS, Ravenswood — check directly
+        </div>
+
+        <div class="section-header purple">🧪 ACER Scholarship Tests</div>
+        <table>
+            <thead><tr><th>Book / Resource</th><th>What It Tests</th><th>Cost</th><th>Where</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>ACER Scholarship Practice Tests</strong></td><td>Maths, Reading comprehension, Written expression, General ability</td><td>~$20–25</td><td><a href="https://www.acer.org/au" target="_blank">acer.org/au</a></td></tr>
+                <tr><td><strong>ACER Scholarship Test — Practice Online</strong></td><td>Computer-based practice matching ACER format</td><td>~$30</td><td><a href="https://www.acer.org/au" target="_blank">acer.org/au</a></td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header blue">🧪 EduTest Scholarship Tests</div>
+        <table>
+            <thead><tr><th>Book / Resource</th><th>What It Tests</th><th>Cost</th><th>Where</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>EduTest Practice Papers</strong></td><td>Maths, Reading, Writing, Abstract reasoning, Verbal reasoning</td><td>~$20–25</td><td><a href="https://www.edutest.com.au" target="_blank">edutest.com.au</a></td></tr>
+                <tr><td><strong>EduTest Online Practice</strong></td><td>Computer-based practice papers matching EduTest format</td><td>~$30</td><td><a href="https://www.edutest.com.au" target="_blank">edutest.com.au</a></td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header green">📚 General Scholarship Prep Books</div>
+        <table>
+            <thead><tr><th>Book</th><th>Publisher</th><th>What It Covers</th><th>Cost</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr><td><strong>James An's Selective Schools &amp; Scholarship Tests — Maths</strong></td><td>James An</td><td>Advanced maths, problem-solving, competition-style questions</td><td>~$25</td><td>Harder than NAPLAN. Great for scholarship level.</td></tr>
+                <tr><td><strong>James An's Selective Schools &amp; Scholarship Tests — Verbal Reasoning</strong></td><td>James An</td><td>Word analogies, sentence completion, logical deduction</td><td>~$25</td><td>GA component — builds vocabulary &amp; logic.</td></tr>
+                <tr><td><strong>James An's Selective Schools &amp; Scholarship Tests — General Ability</strong></td><td>James An</td><td>Abstract patterns, number sequences, spatial reasoning</td><td>~$25</td><td>Essential for schools that test GA.</td></tr>
+                <tr><td><strong>A1 Thinking Skills Workbook</strong></td><td>A1 Education</td><td>Logical reasoning, patterns, problem-solving</td><td>~$15</td><td>Additional GA practice.</td></tr>
+                <tr><td><strong>OC/Selective Practice Tests</strong> (any brand)</td><td>Various</td><td>Full-length practice tests — Reading, Maths, GA, Writing</td><td>~$15–20</td><td>Good for timed Saturday practice.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            📋 <strong>Saturday Practice Test Rotation:</strong><br>
+            Week 1: NAPLAN Numeracy practice test (65 min)<br>
+            Week 2: Scholarship Maths + GA practice test<br>
+            Week 3: NAPLAN Reading + Writing practice test<br>
+            Week 4: Full scholarship mock exam (if available)
+        </div>
+    </div>
+
+    <!-- ===================== MATHS BOOST TAB ===================== -->
+    <div id="maths-books" class="tab-content">
+        <h2>🔢 Maths Boost — Resources for Her Weak Area</h2>
+
+        <div class="info-box danger">
+            🎯 <strong>Maths is her #1 priority.</strong> She should be doing maths EVERY day — 30 min IXL + workbook practice. These resources target the specific topics she needs.
+        </div>
+
+        <div class="section-header purple">📐 Priority Topics (Focus Here First)</div>
+        <table>
+            <thead><tr><th>Topic</th><th>Priority</th><th>Best Resource</th><th>IXL Section</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>Fractions &amp; Decimals</strong></td><td>🔴 HIGH</td><td>Excel Basic Skills: Fractions Yr 5 (~$10)</td><td>IXL → Year 5 → Fractions</td></tr>
+                <tr class="highlight-row"><td><strong>Multiplication (times tables)</strong></td><td>🔴 HIGH</td><td>5-min daily speed drill + Excel Yr 5</td><td>IXL → Year 5 → Multiplication</td></tr>
+                <tr class="highlight-row"><td><strong>Word Problems</strong></td><td>🔴 HIGH</td><td>Excel NAPLAN Numeracy (word problem sections)</td><td>IXL → Year 5 → Word problems</td></tr>
+                <tr><td><strong>Division (long division)</strong></td><td>🟡 MEDIUM</td><td>Excel Basic Skills: Mult &amp; Div Yr 5 (~$10)</td><td>IXL → Year 5 → Division</td></tr>
+                <tr><td><strong>Area &amp; Perimeter</strong></td><td>🟡 MEDIUM</td><td>Excel NAPLAN Numeracy + Mental Maths</td><td>IXL → Year 5 → Measurement</td></tr>
+                <tr><td><strong>Time (24-hr, elapsed)</strong></td><td>🟡 MEDIUM</td><td>Excel Mental Maths Yr 5</td><td>IXL → Year 5 → Time</td></tr>
+                <tr><td><strong>Data &amp; Graphs</strong></td><td>🟢 LOW</td><td>Excel NAPLAN Numeracy sections</td><td>IXL → Year 5 → Data</td></tr>
+                <tr><td><strong>Angles &amp; Geometry</strong></td><td>🟢 LOW</td><td>Excel Mental Maths Yr 5</td><td>IXL → Year 5 → Geometry</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header pink">⏱️ Daily Maths Routine (30 min)</div>
+        <table>
+            <thead><tr><th>Time</th><th>Activity</th><th>Duration</th><th>Resource</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td>Start</td><td>⚡ Times tables speed drill</td><td>5 min</td><td>Print tables grid or use <a href="https://www.timestables.com" target="_blank">timestables.com</a></td></tr>
+                <tr><td>+5 min</td><td>📱 IXL Maths Year 5</td><td>15 min</td><td>Focus on weakest topic of the week</td></tr>
+                <tr><td>+20 min</td><td>📝 Word problem practice</td><td>10 min</td><td>Excel Mental Maths OR NAPLAN practice test section</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header green">📚 Recommended Maths Books</div>
+        <table>
+            <thead><tr><th>Book</th><th>Purpose</th><th>Cost</th><th>Priority</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>Excel Mental Maths Year 5</strong></td><td>Daily mental maths. 2 pages/day. Quick &amp; effective.</td><td>~$8</td><td>🔴 GET NOW</td></tr>
+                <tr class="highlight-row"><td><strong>Excel NAPLAN-style Numeracy Yr 5</strong></td><td>Full practice tests. Timed. Matches real NAPLAN.</td><td>~$13</td><td>🔴 GET NOW</td></tr>
+                <tr><td><strong>Excel Revise in a Month — Numeracy Yr 5</strong></td><td>Structured 4-week revision plan. Perfect for NAPLAN sprint.</td><td>~$13</td><td>🟡 SOON</td></tr>
+                <tr><td><strong>Excel Basic Skills: Fractions Yr 5</strong></td><td>Deep practice on fractions — her weakest topic.</td><td>~$10</td><td>🟡 SOON</td></tr>
+                <tr><td><strong>Excel Basic Skills: Mult &amp; Div Yr 5</strong></td><td>Strengthen multiplication and long division.</td><td>~$10</td><td>🟡 SOON</td></tr>
+                <tr><td><strong>James An's Scholarship Maths</strong></td><td>Advanced problem-solving. Harder than NAPLAN.</td><td>~$25</td><td>🟢 AFTER NAPLAN</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header blue">🆓 Free Online Maths Resources</div>
+        <div class="card-grid">
+            <div class="resource-card">
+                <h4>📱 IXL — Year 5 Maths</h4>
+                <p>Adaptive practice. Tracks mastery. Immediate feedback.</p>
+                <p><strong>Use for:</strong> Daily 15-min practice on weak topics.</p>
+                <p class="card-price">Already subscribed! ✅</p>
+            </div>
+            <div class="resource-card">
+                <h4>📱 Khan Academy</h4>
+                <p>Free video lessons + practice for every maths topic.</p>
+                <p><strong>Use for:</strong> Watch a video when she doesn't understand a concept.</p>
+                <p class="card-price">FREE <span class="tag free">FREE</span></p>
+            </div>
+            <div class="resource-card">
+                <h4>🌐 NAPLAN Online Demo</h4>
+                <p>Official NAPLAN practice tests at nap.edu.au.</p>
+                <p><strong>Use for:</strong> Saturday timed practice — most realistic format.</p>
+                <p class="card-price">FREE <span class="tag free">FREE</span></p>
+            </div>
+            <div class="resource-card">
+                <h4>🌐 Timestables.com</h4>
+                <p>Free times tables speed tests and games.</p>
+                <p><strong>Use for:</strong> Daily 5-min speed drill at the start of maths.</p>
+                <p class="card-price">FREE <span class="tag free">FREE</span></p>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            🔢 Daily maths plan: 5 min tables drill + 15 min IXL + 10 min word problems = 30 min/day. That's it!
+        </div>
+    </div>
+
+    <!-- ===================== READING TAB ===================== -->
+    <div id="reading" class="tab-content">
+        <h2>📖 Reading for Pleasure — Year 5 Recommendations</h2>
+
+        <div class="info-box success">
+            ✅ <strong>She's already strong in reading!</strong> The goal here is to keep her reading widely and deeply. Let her choose books she loves — the more she reads, the better her vocabulary, comprehension, and writing become naturally.
+        </div>
+
+        <div class="section-header purple">⭐ Must-Reads for Year 5 (Start Here)</div>
+        <table>
+            <thead><tr><th>Title</th><th>Author</th><th>Why It's Perfect</th><th>Get It</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Harry Potter and the Philosopher's Stone</strong></td><td>J.K. Rowling</td><td>Rich vocabulary, complex plot, builds stamina for long texts. Perfect for advanced Year 5.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Percy Jackson: The Lightning Thief</strong></td><td>Rick Riordan</td><td>Fast-paced, mythology, great for kids who need page-turners. Excellent vocabulary.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Wonder</strong></td><td>R.J. Palacio</td><td>Empathy, multiple perspectives, rich themes. NAPLAN writing inspiration.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Matilda</strong></td><td>Roald Dahl</td><td>Love of reading, clever heroine, Dahl's brilliant language.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Holes</strong></td><td>Louis Sachar</td><td>Layered narrative, mystery, cause &amp; effect — brilliant for comprehension skills.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>The One and Only Ivan</strong></td><td>Katherine Applegate</td><td>Beautiful prose, animal perspective, concise writing. Newbery winner.</td><td><span class="tag library">LIBRARY</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header green">🦘 Australian Authors</div>
+        <table>
+            <thead><tr><th>Title</th><th>Author</th><th>Why It's Great</th><th>Get It</th></tr></thead>
+            <tbody>
+                <tr><td><strong>The 13-Storey Treehouse</strong></td><td>Andy Griffiths &amp; Terry Denton</td><td>Hilarious, visual, great reluctant-reader hook. Huge vocab in disguise.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Boy Overboard</strong></td><td>Morris Gleitzman</td><td>Refugee story, empathy, cultural understanding. Often used in NAPLAN passages.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Once</strong></td><td>Morris Gleitzman</td><td>WWII through a child's eyes. Powerful, short chapters. Builds inference skills.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Storm Boy</strong></td><td>Colin Thiele</td><td>Classic Australian story. Nature, friendship, beautiful language. Short read.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Hatchet</strong></td><td>Gary Paulsen</td><td>Survival, independence, descriptive writing. Great for boys &amp; girls.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Blueback</strong></td><td>Tim Winton</td><td>Environmental themes, Australian setting, rich prose.</td><td><span class="tag library">LIBRARY</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header blue">🌍 Classics &amp; Award Winners</div>
+        <table>
+            <thead><tr><th>Title</th><th>Author</th><th>Why It's Great</th><th>Get It</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Charlotte's Web</strong></td><td>E.B. White</td><td>Friendship, loss, beautiful prose. Perfect for building emotional vocabulary.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Bridge to Terabithia</strong></td><td>Katherine Paterson</td><td>Imagination, friendship, dealing with grief. Builds deep comprehension.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Number the Stars</strong></td><td>Lois Lowry</td><td>Courage, WWII, accessible historical fiction. Newbery winner.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>The Secret Garden</strong></td><td>Frances Hodgson Burnett</td><td>Classic. Rich vocabulary, transformation, nature. Builds stamina.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>A Wrinkle in Time</strong></td><td>Madeleine L'Engle</td><td>Science, adventure, strong female lead. Newbery winner.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>The Phantom Tollbooth</strong></td><td>Norton Juster</td><td>Language play, maths concepts in story form, clever humour.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Coraline</strong></td><td>Neil Gaiman</td><td>Atmospheric, suspense, rich language. Great for confident readers.</td><td><span class="tag library">LIBRARY</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header orange">📰 Non-Fiction for Scholarship Prep</div>
+        <table>
+            <thead><tr><th>Title / Resource</th><th>Type</th><th>Why It Helps</th><th>Get It</th></tr></thead>
+            <tbody>
+                <tr><td><strong>National Geographic Kids magazine</strong></td><td>Magazine (monthly)</td><td>Builds non-fiction reading skills. NAPLAN includes non-fiction passages.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Horrible Histories series</strong></td><td>Non-fiction / humour</td><td>History knowledge, engaging format. Great for general knowledge.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>DK Eyewitness series</strong></td><td>Reference / visual</td><td>Science, history, geography. Builds scholarship breadth.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>Guinness World Records 2026</strong></td><td>Reference</td><td>Data, statistics, fascinating facts. Makes reading fun.</td><td><span class="tag library">LIBRARY</span></td></tr>
+                <tr><td><strong>ABC News / Behind the News (BTN)</strong></td><td>Online / TV</td><td>Current affairs for kids. Builds persuasive writing topics.</td><td><span class="tag free">FREE</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            📖 <strong>Reading goal:</strong> 30 min/day reading for pleasure (she already does bedtime reading 8:30–9:00). If she's into a book, let her read as long as she wants on weekends! Don't make reading feel like homework.
+        </div>
+    </div>
+
+    <!-- ===================== APPS TAB ===================== -->
+    <div id="apps" class="tab-content">
+        <h2>📱 Apps &amp; Online Resources</h2>
+
+        <div class="info-box success">
+            ✅ <strong>You already have:</strong> Khan Academy Kids, IXL, Duolingo. For Year 5 daughter, <strong>IXL</strong> is the most important — use it daily for maths.
+        </div>
+
+        <div class="section-header purple">📱 Apps You Have (Already Subscribed)</div>
+        <table>
+            <thead><tr><th>App</th><th>Daughter's Use</th><th>Focus Areas</th><th>Daily Time</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>📱 IXL</strong></td><td>DAILY — Maths Year 5</td><td>Fractions, multiplication, word problems, measurement. Tracks mastery.</td><td>15–30 min</td></tr>
+                <tr><td><strong>📱 Khan Academy</strong></td><td>As needed — video lessons</td><td>Watch explainer videos when she's stuck on a maths concept (fractions, division, etc.)</td><td>As needed</td></tr>
+                <tr><td><strong>📱 Duolingo</strong></td><td>Optional — Mandarin supplement</td><td>Can supplement her Wednesday Mandarin class if she wants extra practice.</td><td>Optional</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header green">🌐 Free Online Resources</div>
+        <div class="card-grid">
+            <div class="resource-card">
+                <h4>📝 NAPLAN Online Demo Site</h4>
+                <p><a href="https://www.nap.edu.au/online-assessment/public-demonstration-site" target="_blank">nap.edu.au</a></p>
+                <p>Official NAPLAN practice. Most realistic online experience.</p>
+                <p><strong>Use for:</strong> Saturday timed practice tests.</p>
+                <p class="card-price">FREE</p>
+            </div>
+            <div class="resource-card">
+                <h4>📱 Khan Academy — Year 5 Maths</h4>
+                <p><a href="https://www.khanacademy.org/math" target="_blank">khanacademy.org</a></p>
+                <p>Video explanations + practice for every maths topic.</p>
+                <p><strong>Use for:</strong> When she doesn't understand a concept.</p>
+                <p class="card-price">FREE</p>
+            </div>
+            <div class="resource-card">
+                <h4>⏱️ Times Tables Speed Test</h4>
+                <p><a href="https://www.timestables.com" target="_blank">timestables.com</a></p>
+                <p>Free online times tables speed tests and games.</p>
+                <p><strong>Use for:</strong> Daily 5-min speed drill before IXL.</p>
+                <p class="card-price">FREE</p>
+            </div>
+            <div class="resource-card">
+                <h4>📺 Behind the News (BTN)</h4>
+                <p><a href="https://www.abc.net.au/btn" target="_blank">abc.net.au/btn</a></p>
+                <p>Current affairs for kids. Great for persuasive writing topics.</p>
+                <p><strong>Use for:</strong> Weekly viewing — gives her topics for NAPLAN writing.</p>
+                <p class="card-price">FREE</p>
+            </div>
+            <div class="resource-card">
+                <h4>📖 Pobble 365</h4>
+                <p><a href="https://www.pobble365.com" target="_blank">pobble365.com</a></p>
+                <p>Daily picture prompt for creative writing practice.</p>
+                <p><strong>Use for:</strong> Wednesday writing practice — use as narrative prompt.</p>
+                <p class="card-price">FREE</p>
+            </div>
+            <div class="resource-card">
+                <h4>📐 GeoGebra</h4>
+                <p><a href="https://www.geogebra.org" target="_blank">geogebra.org</a></p>
+                <p>Interactive geometry, fractions visualiser, graphing.</p>
+                <p><strong>Use for:</strong> Visual understanding of fractions, angles, shapes.</p>
+                <p class="card-price">FREE</p>
+            </div>
+        </div>
+
+        <div class="section-header orange">💰 Optional Paid Resources</div>
+        <table>
+            <thead><tr><th>Resource</th><th>What It Does</th><th>Cost</th><th>Worth It?</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Mathletics</strong></td><td>Gamified maths practice. Australian curriculum aligned.</td><td>~$99/year</td><td>Only if IXL isn't enough. IXL may be sufficient.</td></tr>
+                <tr><td><strong>Reading Eggs (Reading Eggspress)</strong></td><td>Reading comprehension practice for older kids.</td><td>~$90/year</td><td>Only if she needs more structured reading practice.</td></tr>
+                <tr><td><strong>EdShed</strong></td><td>Spelling practice aligned to Australian curriculum.</td><td>~$40/year</td><td>Optional — her spelling is already strong.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="summary-card">
+            📱 Daily digital plan: 5 min timestables.com → 15 min IXL Maths → Khan Academy videos as needed. That's it!
+        </div>
+    </div>
+
+    <!-- ===================== WRITING TAB ===================== -->
+    <div id="writing" class="tab-content">
+        <h2>✍️ Writing Resources &amp; Practice</h2>
+
+        <div class="info-box">
+            🎯 <strong>NAPLAN Writing:</strong> One essay, 42 minutes. Either <strong>persuasive</strong> or <strong>narrative</strong> (she won't know until exam day). Must practise BOTH types.
+        </div>
+
+        <div class="section-header purple">📝 Persuasive Writing — PEEL Structure</div>
+        <div class="card-grid">
+            <div class="resource-card">
+                <h4>PEEL Paragraph Structure</h4>
+                <p><strong>P</strong>oint — State your argument</p>
+                <p><strong>E</strong>vidence — Give examples or facts</p>
+                <p><strong>E</strong>xplain — Why this evidence matters</p>
+                <p><strong>L</strong>ink — Connect back to your main argument</p>
+            </div>
+            <div class="resource-card">
+                <h4>Essay Structure (300-400 words)</h4>
+                <p><strong>Introduction:</strong> Hook + state position (3-4 sentences)</p>
+                <p><strong>Body 1:</strong> Strongest argument (PEEL)</p>
+                <p><strong>Body 2:</strong> Second argument (PEEL)</p>
+                <p><strong>Body 3:</strong> Counter-argument + rebuttal</p>
+                <p><strong>Conclusion:</strong> Restate position + call to action</p>
+            </div>
+        </div>
+
+        <div class="section-header pink">📝 Narrative Writing — Show Don't Tell</div>
+        <div class="card-grid">
+            <div class="resource-card">
+                <h4>Narrative Structure</h4>
+                <p><strong>Orientation:</strong> Who, where, when (set the scene)</p>
+                <p><strong>Complication:</strong> The problem or conflict</p>
+                <p><strong>Rising action:</strong> Events build tension</p>
+                <p><strong>Climax:</strong> The turning point</p>
+                <p><strong>Resolution:</strong> How it's resolved</p>
+            </div>
+            <div class="resource-card">
+                <h4>Show Don't Tell Examples</h4>
+                <p>❌ "She was scared."</p>
+                <p>✅ "Her hands trembled as a cold shiver crept up her spine."</p>
+                <br>
+                <p>❌ "The weather was bad."</p>
+                <p>✅ "Rain hammered the tin roof like a drum solo that wouldn't end."</p>
+            </div>
+        </div>
+
+        <div class="section-header green">🗓️ Weekly Writing Practice Plan</div>
+        <table>
+            <thead><tr><th>When</th><th>Task</th><th>Time</th><th>Details</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>Wednesday 6:30 PM</strong></td><td>Timed writing practice</td><td>25 min</td><td>Alternate: Week 1 persuasive, Week 2 narrative. Use exercise book. Date each entry.</td></tr>
+                <tr><td>After writing</td><td>Self-check (5 min)</td><td>5 min</td><td>Check: Did I use PEEL? Did I show-don't-tell? Spelling? Punctuation?</td></tr>
+                <tr><td>Weekend (optional)</td><td>Parent review</td><td>10 min</td><td>Read together. Highlight strong parts. Suggest one improvement.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header orange">📝 Practice Prompts</div>
+        <h3 style="margin-top: 1rem;">Persuasive Prompts</h3>
+        <table>
+            <thead><tr><th>#</th><th>Prompt</th><th>Tip</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Should homework be banned?</td><td>Think about both sides first, then choose one.</td></tr>
+                <tr><td>2</td><td>Should students wear school uniforms?</td><td>Use personal experience as evidence.</td></tr>
+                <tr><td>3</td><td>Are zoos good or bad for animals?</td><td>Include a counter-argument and rebuttal.</td></tr>
+                <tr><td>4</td><td>Should children have mobile phones?</td><td>Think about safety AND distraction arguments.</td></tr>
+                <tr><td>5</td><td>Should plastic bags be banned completely?</td><td>Use facts and statistics if you can.</td></tr>
+                <tr><td>6</td><td>Is it better to read books or watch movies?</td><td>Use specific examples from books you've read.</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Narrative Prompts</h3>
+        <table>
+            <thead><tr><th>#</th><th>Prompt</th><th>Tip</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Write about a time you found something unexpected.</td><td>Start with action, not "One day..."</td></tr>
+                <tr><td>2</td><td>You wake up and discover you can fly.</td><td>Use sensory details — what do you see, hear, feel?</td></tr>
+                <tr><td>3</td><td>A mysterious letter arrives at your door.</td><td>Build suspense slowly. Don't reveal everything at once.</td></tr>
+                <tr><td>4</td><td>Write about a journey that changed everything.</td><td>Focus on the character's emotions, not just events.</td></tr>
+                <tr><td>5</td><td>You find a door that leads to another world.</td><td>Describe the new world using all five senses.</td></tr>
+                <tr><td>6</td><td>The last day of something important.</td><td>Use flashbacks to build emotional depth.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="info-box success">
+            💡 <strong>Writing vocabulary boosters:</strong> Keep a "word bank" in the front of her exercise book. When she reads a great word in a novel, write it down with the definition. Use 2-3 word bank words in each writing practice.
+        </div>
+
+        <div class="section-header blue">📚 Books That Improve Writing</div>
+        <table>
+            <thead><tr><th>Book</th><th>How It Helps Writing</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Wonder</strong> — R.J. Palacio</td><td>Multiple perspectives, strong voice, empathy themes (persuasive topics)</td></tr>
+                <tr><td><strong>Holes</strong> — Louis Sachar</td><td>Layered narrative structure, cause &amp; effect, concise powerful writing</td></tr>
+                <tr><td><strong>The One and Only Ivan</strong> — K. Applegate</td><td>Show-don't-tell masterclass, short evocative sentences</td></tr>
+                <tr><td><strong>Coraline</strong> — Neil Gaiman</td><td>Atmospheric description, building suspense, rich sensory language</td></tr>
+                <tr><td><strong>Boy Overboard</strong> — Morris Gleitzman</td><td>First-person voice, humour in serious topics, empathy</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<footer>
+    <p>📚 Kids Education Hub — Year 5 Books &amp; Resources</p>
+    <p>
+        <a href="index.html" style="color: var(--primary-light);">← Home</a> ·
+        <a href="daughter.html" style="color: var(--primary-light);">📝 Schedule &amp; NAPLAN</a> ·
+        <a href="family-calendar.html" style="color: var(--primary-light);">👨‍👩‍👧‍👦 Family Calendar</a> ·
+        <a href="books.html" style="color: var(--primary-light);">📖 Son's Books</a>
+    </p>
+</footer>
+
+<script>
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
