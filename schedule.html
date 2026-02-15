@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Schedule — Kindy (Age 5)</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --primary-light: #2e86c1;
+            --accent: #e67e22;
+            --green: #27ae60;
+            --purple: #8e44ad;
+            --red: #c0392b;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #e0e0e0;
+            --yellow-bg: #fff9e6;
+            --green-bg: #eafaf1;
+            --orange-bg: #fef5e7;
+            --blue-bg: #eaf2f8;
+            --purple-bg: #f4ecf7;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--accent) 0%, #d35400 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
+        .hero .meta { font-size: 1rem; opacity: 0.9; }
+        .hero .times {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero .time-pill {
+            background: rgba(255,255,255,0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        nav.breadcrumb {
+            background: var(--card-bg);
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        nav.breadcrumb a { color: var(--primary-light); text-decoration: none; }
+        nav.breadcrumb a:hover { text-decoration: underline; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        /* Tab navigation */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0;
+        }
+        .tab {
+            padding: 0.7rem 1.2rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: var(--primary); }
+        .tab.active { color: var(--primary); border-bottom-color: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        thead th {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        tbody td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+            vertical-align: top;
+        }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:nth-child(even) { background: #f9f9f9; }
+        .highlight-row { background: var(--yellow-bg) !important; font-weight: 600; }
+
+        /* Section headers */
+        .section-header {
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0 0.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .section-header.orange { background: var(--orange-bg); color: #d35400; border-left: 4px solid var(--accent); }
+        .section-header.green { background: var(--green-bg); color: #1e8449; border-left: 4px solid var(--green); }
+        .section-header.blue { background: var(--blue-bg); color: var(--primary); border-left: 4px solid var(--primary-light); }
+        .section-header.purple { background: var(--purple-bg); color: var(--purple); border-left: 4px solid var(--purple); }
+
+        /* Day cards */
+        .day-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+        .day-card .day-header {
+            color: white;
+            padding: 0.8rem 1.2rem;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .day-card.monday .day-header { background: #2e86c1; }
+        .day-card.tuesday .day-header { background: #27ae60; }
+        .day-card.wednesday .day-header { background: #e67e22; }
+        .day-card.thursday .day-header { background: #8e44ad; }
+        .day-card.friday .day-header { background: #b7950b; }
+        .day-card.saturday .day-header { background: #c0392b; }
+        .day-card.sunday .day-header { background: #2e86c1; }
+        .day-card .day-body { padding: 0; }
+
+        /* Summary card */
+        .summary-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        /* Fridge card */
+        .fridge-card {
+            background: var(--card-bg);
+            border: 3px dashed var(--accent);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+        .fridge-card h3 { font-family: 'Segoe UI', sans-serif; text-align: center; margin-bottom: 1rem; color: var(--primary); }
+
+        .print-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+        .print-btn:hover { background: #d35400; }
+
+        /* Golden rules */
+        .rule {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .rule:last-child { border-bottom: none; }
+        .rule-num {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+        @media print {
+            .hero, nav, .tabs, footer, .print-btn, .no-print { display: none; }
+            .tab-content { display: block !important; }
+            .fridge-card { border: 2px solid #333; page-break-inside: avoid; }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.6rem; }
+            .hero .times { gap: 0.5rem; }
+            .tab { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+            table { font-size: 0.8rem; }
+            thead th, tbody td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+    <a href="index.html">🏠 Home</a> &rsaquo; Daily Schedule
+</nav>
+
+<div class="hero">
+    <h1>📅 Daily Schedule — Kindy (Age 5)</h1>
+    <div class="meta">Practical, day-by-day plan — print it and stick it on the fridge!</div>
+    <div class="times">
+        <span class="time-pill">🏠 Child home 3:30 PM</span>
+        <span class="time-pill">👨‍👩‍👦 Parents home 6:00 PM</span>
+        <span class="time-pill">💤 Bedtime 9:00 PM</span>
+        <span class="time-pill">📱 Khan Academy · IXL · Duolingo</span>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('weekday')">⏰ Weekday</button>
+        <button class="tab" onclick="showTab('daily')">📋 Daily Plan</button>
+        <button class="tab" onclick="showTab('weekend')">🌤️ Weekend</button>
+        <button class="tab" onclick="showTab('summary')">📊 Summary</button>
+        <button class="tab" onclick="showTab('terms')">🔄 Terms</button>
+        <button class="tab" onclick="showTab('rules')">💡 Rules</button>
+        <button class="tab" onclick="showTab('fridge')">🖨️ Print</button>
+    </div>
+
+    <!-- ===================== WEEKDAY TAB ===================== -->
+    <div id="weekday" class="tab-content active">
+        <div class="section-header orange">🏠 Child Time — Before Parents Arrive (3:30 – 6:00 PM)</div>
+        <p style="margin: 0.5rem 0 1rem; color: var(--text-light);">Independent or with carer. No heavy academics — he just finished a full school day.</p>
+        <table>
+            <thead><tr><th>Time</th><th>Activity</th><th>Duration</th><th>Details</th></tr></thead>
+            <tbody>
+                <tr><td>3:30–4:00</td><td>Free play + snack</td><td>30 min</td><td>Decompress from school. Eat, relax, play freely.</td></tr>
+                <tr class="highlight-row"><td>4:00–4:20</td><td>📱 Educational app</td><td>20 min</td><td>Khan Academy Kids / IXL / Duolingo — see App Rotation</td></tr>
+                <tr><td>4:20–5:00</td><td>🏃 Outdoor play</td><td>40 min</td><td>Bike riding, backyard, park, scooter — burn energy!</td></tr>
+                <tr><td>5:00–5:30</td><td>🧩 Puzzles / LEGO</td><td>30 min</td><td>Jigsaw puzzles (24-48 pcs), free LEGO build, colouring</td></tr>
+                <tr><td>5:30–6:00</td><td>Quiet play / TV</td><td>30 min</td><td>Bluey, Numberblocks, or free play.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header green">👨‍👩‍👦 Family Learning Time — Parents Home (6:00 – 9:00 PM)</div>
+        <p style="margin: 0.5rem 0 1rem; color: var(--text-light);">This is where the real magic happens. Quality time with Mum and Dad.</p>
+        <table>
+            <thead><tr><th>Time</th><th>Activity</th><th>Duration</th><th>Details</th></tr></thead>
+            <tbody>
+                <tr><td>6:00–6:30</td><td>🍽️ Dinner together</td><td>30 min</td><td>Family conversation: "What was the best thing today?"</td></tr>
+                <tr class="highlight-row"><td>6:30–6:35</td><td>📖 Phonics practice</td><td>5 min</td><td>See Daily Plan tab for specific activities</td></tr>
+                <tr class="highlight-row"><td>6:35–6:45</td><td>📚 Reading practice</td><td>10 min</td><td>Child reads decodable book OR parent reads aloud</td></tr>
+                <tr class="highlight-row"><td>6:45–6:55</td><td>🔢 Maths activity</td><td>10 min</td><td>See Daily Plan tab for specific games</td></tr>
+                <tr><td>6:55–7:30</td><td>🎲 Free play / family</td><td>35 min</td><td>Board game, backyard, conversation — bonding time</td></tr>
+                <tr><td>7:30–8:00</td><td>🛁 Bath + wind down</td><td>30 min</td><td>Calm activities only. No screens.</td></tr>
+                <tr class="highlight-row"><td>8:00–8:15</td><td>🌙 Bedtime read-aloud</td><td>15 min</td><td>Rich, beautiful books ABOVE his level</td></tr>
+                <tr><td>8:15–8:30</td><td>Calm chat</td><td>15 min</td><td>Talk about tomorrow, gratitude, gentle wind down</td></tr>
+                <tr><td>8:30–9:00</td><td>💤 Settle + sleep</td><td>30 min</td><td>Lights out by 9:00 PM. Target: 10-11 hrs sleep.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="summary-card">
+            📊 Total structured learning: ~40 min/day (phonics 5m + reading 10m + maths 10m + read-aloud 15m). The rest is play!
+        </div>
+    </div>
+
+    <!-- ===================== DAILY PLAN TAB ===================== -->
+    <div id="daily" class="tab-content">
+        <p style="margin-bottom: 1rem; color: var(--text-light);">Each day has a different focus. The 6:30–6:55 PM learning block and 8:00 PM bedtime read-aloud change daily.</p>
+
+        <div class="day-card monday">
+            <div class="day-header">Monday — Letter Sounds + Counting</div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Session</th><th>Time</th><th>Activity</th><th>Book / Resource</th></tr></thead>
+                    <tbody>
+                        <tr><td>📱 App</td><td>4:00–4:20</td><td><strong>Khan Academy Kids</strong> — Letters</td><td>Reading section → Letter sounds</td></tr>
+                        <tr><td>📖 Phonics</td><td>6:30–6:35</td><td>Introduce/review 2 letter sounds</td><td><strong>Jolly Phonics Workbook 1</strong></td></tr>
+                        <tr><td>📚 Reading</td><td>6:35–6:45</td><td>Parent read-aloud</td><td><strong>Possum Magic</strong> — Mem Fox</td></tr>
+                        <tr><td>🔢 Maths</td><td>6:45–6:55</td><td>Counting objects</td><td><strong>The Very Hungry Caterpillar</strong> — count the fruit!</td></tr>
+                        <tr><td>🌙 Bedtime</td><td>8:00–8:15</td><td>Read-aloud</td><td><strong>Where the Wild Things Are</strong> — Sendak</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card tuesday">
+            <div class="day-header">Tuesday — Blending + Shapes</div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Session</th><th>Time</th><th>Activity</th><th>Book / Resource</th></tr></thead>
+                    <tbody>
+                        <tr><td>📱 App</td><td>4:00–4:20</td><td><strong>IXL</strong> — Maths</td><td>Kindy Maths → Shapes & counting</td></tr>
+                        <tr><td>📖 Phonics</td><td>6:30–6:35</td><td>Blending CVC words</td><td><strong>Bob Books Set 1</strong> (Books 1-2)</td></tr>
+                        <tr><td>📚 Reading</td><td>6:35–6:45</td><td>Child reads decodable</td><td><strong>Dandelion Readers Unit 1</strong></td></tr>
+                        <tr><td>🔢 Maths</td><td>6:45–6:55</td><td>Shape hunt</td><td><strong>Mouse Shapes</strong> — Ellen Stoll Walsh</td></tr>
+                        <tr><td>🌙 Bedtime</td><td>8:00–8:15</td><td>Read-aloud</td><td><strong>The Gruffalo</strong> — Julia Donaldson</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card wednesday">
+            <div class="day-header">Wednesday — Sight Words + Patterns</div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Session</th><th>Time</th><th>Activity</th><th>Book / Resource</th></tr></thead>
+                    <tbody>
+                        <tr><td>📱 App</td><td>4:00–4:20</td><td><strong>Duolingo</strong></td><td>Daily lesson — letter recognition</td></tr>
+                        <tr><td>📖 Phonics</td><td>6:30–6:35</td><td>Learn 2 sight words</td><td><strong>100 First Words</strong> (DK)</td></tr>
+                        <tr><td>📚 Reading</td><td>6:35–6:45</td><td>Non-fiction read-aloud</td><td><strong>Nat Geo First Big Book of Why</strong></td></tr>
+                        <tr><td>🔢 Maths</td><td>6:45–6:55</td><td>Pattern making</td><td><strong>Pattern Fish</strong> — Trudy Harris</td></tr>
+                        <tr><td>🌙 Bedtime</td><td>8:00–8:15</td><td>Read-aloud</td><td><strong>Green Eggs and Ham</strong> — Dr. Seuss</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card thursday">
+            <div class="day-header">Thursday — Writing + Number Games</div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Session</th><th>Time</th><th>Activity</th><th>Book / Resource</th></tr></thead>
+                    <tbody>
+                        <tr><td>📱 App</td><td>4:00–4:20</td><td><strong>Khan Academy Kids</strong> — Maths</td><td>Numbers → Counting & addition</td></tr>
+                        <tr><td>📖 Phonics</td><td>6:30–6:35</td><td>Letter formation</td><td><strong>Kumon: Uppercase Letters</strong></td></tr>
+                        <tr><td>📚 Reading</td><td>6:35–6:45</td><td>Child reads decodable</td><td><strong>Bob Books Set 1</strong> (Books 3-4)</td></tr>
+                        <tr><td>🔢 Maths</td><td>6:45–6:55</td><td>Board game / dice game</td><td>Snakes & Ladders, Shut the Box, or UNO</td></tr>
+                        <tr><td>🌙 Bedtime</td><td>8:00–8:15</td><td>Read-aloud</td><td><strong>Wombat Stew</strong> — Marcia Vaughan</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card friday">
+            <div class="day-header">Friday — Fun Review + Cooking Maths</div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Session</th><th>Time</th><th>Activity</th><th>Book / Resource</th></tr></thead>
+                    <tbody>
+                        <tr><td>📱 App</td><td>4:00–4:20</td><td><strong>IXL</strong> — Reading</td><td>Kindy English → Phonics review</td></tr>
+                        <tr><td>📖 Phonics</td><td>6:30–6:35</td><td>Week review quiz</td><td>"Show me the sound for..." — flash cards</td></tr>
+                        <tr><td>📚 Reading</td><td>6:35–6:45</td><td>Child's choice!</td><td>Any book he wants — favourites are great!</td></tr>
+                        <tr><td>🔢 Maths</td><td>6:45–6:55</td><td>Cooking maths</td><td><strong>Pete the Cat: Missing Cupcakes</strong> — then bake!</td></tr>
+                        <tr><td>🌙 Bedtime</td><td>8:00–8:15</td><td>Read-aloud</td><td>Child's choice of book</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== WEEKEND TAB ===================== -->
+    <div id="weekend" class="tab-content">
+
+        <div class="day-card saturday">
+            <div class="day-header">Saturday — Exploration Day</div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Duration</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>8:00–8:30</td><td>Breakfast conversation</td><td>30 min</td><td>"What should we do today?" — builds planning skills</td></tr>
+                        <tr class="highlight-row"><td>9:00–9:20</td><td>📱 Khan Academy Kids</td><td>20 min</td><td>Free exploration — let him choose</td></tr>
+                        <tr><td>9:30–10:30</td><td>📚 Library / bookshop</td><td>60 min</td><td>Let him choose 3-5 books. Return last week's.</td></tr>
+                        <tr><td>10:30–12:00</td><td>🏃 Outdoor play / sport</td><td>90 min</td><td>Physical activity is brain food!</td></tr>
+                        <tr><td>12:00–12:30</td><td>Lunch</td><td>30 min</td><td></td></tr>
+                        <tr class="highlight-row"><td>1:00–1:30</td><td>🧩 Puzzles or LEGO</td><td>30 min</td><td>Jigsaw (24-48 pcs), Magna-Tiles, free build</td></tr>
+                        <tr><td>1:30–3:00</td><td>Free play / playdate</td><td>90 min</td><td>Social play is critical</td></tr>
+                        <tr class="highlight-row"><td>5:00–5:30</td><td>🎲 Board game time</td><td>30 min</td><td>Chess basics, Blokus, Rush Hour Jr., Spot It!</td></tr>
+                        <tr><td>6:00–6:30</td><td>Dinner</td><td>30 min</td><td></td></tr>
+                        <tr class="highlight-row"><td>7:00–7:30</td><td>📖 Family reading</td><td>30 min</td><td>Start a chapter book read-aloud (Magic Tree House)</td></tr>
+                        <tr><td>8:00–8:30</td><td>Bath + wind down</td><td>30 min</td><td></td></tr>
+                        <tr><td>8:30–9:00</td><td>💤 Bedtime</td><td>—</td><td>Lights out by 9:00 PM</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card sunday">
+            <div class="day-header">Sunday — Rest + Family Day</div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Duration</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>Morning</td><td>Relaxed family time</td><td>Flexible</td><td>No pressure. Read if he wants to.</td></tr>
+                        <tr class="highlight-row"><td>9:30–9:50</td><td>📱 IXL — Maths</td><td>20 min</td><td>Whatever he finds fun today</td></tr>
+                        <tr><td>10:00–12:00</td><td>🌳 Family outing</td><td>2 hrs</td><td>Museum, beach, bushwalk, market</td></tr>
+                        <tr><td>12:00–12:30</td><td>Lunch</td><td>30 min</td><td></td></tr>
+                        <tr><td>Afternoon</td><td>Free play</td><td>Flexible</td><td>Drawing, building, imaginative play</td></tr>
+                        <tr class="highlight-row"><td>4:00–4:30</td><td>🔢 Maths in real life</td><td>30 min</td><td>Cook together, count money, measure things</td></tr>
+                        <tr><td>6:00–6:30</td><td>Dinner</td><td>30 min</td><td></td></tr>
+                        <tr class="highlight-row"><td>7:00–7:30</td><td>📖 Bedtime read-aloud</td><td>30 min</td><td>Maths picture book then storybook</td></tr>
+                        <tr><td>8:00–8:30</td><td>Bath + wind down</td><td>30 min</td><td></td></tr>
+                        <tr><td>8:30–9:00</td><td>💤 Bedtime</td><td>—</td><td>Lights out by 9:00 PM</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            🌤️ Weekend structured time: ~2 hours/day spread across the day. The rest is play, family, and exploration.
+        </div>
+    </div>
+
+    <!-- ===================== SUMMARY TAB ===================== -->
+    <div id="summary" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: var(--primary);">📊 Weekly Summary</h2>
+        <table>
+            <thead><tr>
+                <th>Activity</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Total</th>
+            </tr></thead>
+            <tbody>
+                <tr><td>📖 Phonics + Reading</td><td>15m</td><td>15m</td><td>15m</td><td>15m</td><td>15m</td><td>—</td><td>—</td><td><strong>1h 15m</strong></td></tr>
+                <tr><td>🔢 Maths</td><td>10m</td><td>10m</td><td>10m</td><td>10m</td><td>10m</td><td>30m</td><td>30m</td><td><strong>1h 50m</strong></td></tr>
+                <tr><td>🌙 Read-aloud</td><td>15m</td><td>15m</td><td>15m</td><td>15m</td><td>15m</td><td>30m</td><td>30m</td><td><strong>2h 15m</strong></td></tr>
+                <tr><td>🧩 Thinking skills</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>60m</td><td>—</td><td><strong>1h</strong></td></tr>
+                <tr><td>📱 Apps</td><td>20m</td><td>20m</td><td>20m</td><td>20m</td><td>20m</td><td>20m</td><td>20m</td><td><strong>2h 20m</strong></td></tr>
+                <tr class="highlight-row"><td><strong>TOTAL</strong></td><td><strong>60m</strong></td><td><strong>60m</strong></td><td><strong>60m</strong></td><td><strong>60m</strong></td><td><strong>60m</strong></td><td><strong>2h30</strong></td><td><strong>1h10</strong></td><td><strong>~8 hrs</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top: 2rem; color: var(--primary);">📱 App Rotation — Your Subscriptions</h3>
+        <table>
+            <thead><tr><th>Day</th><th>App</th><th>Focus</th><th>What To Do</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Monday</strong></td><td>Khan Academy Kids</td><td>Reading / Phonics</td><td>Letters & Sounds → letter sounds, tracing</td></tr>
+                <tr><td><strong>Tuesday</strong></td><td>IXL</td><td>Maths</td><td>Kindy Maths → Counting, shapes</td></tr>
+                <tr><td><strong>Wednesday</strong></td><td>Duolingo</td><td>Literacy</td><td>Daily lesson — letter recognition</td></tr>
+                <tr><td><strong>Thursday</strong></td><td>Khan Academy Kids</td><td>Maths</td><td>Numbers → Counting & addition</td></tr>
+                <tr><td><strong>Friday</strong></td><td>IXL</td><td>Reading</td><td>Kindy English → Phonics, rhyming</td></tr>
+                <tr><td><strong>Saturday</strong></td><td>Khan Academy Kids</td><td>All-rounder</td><td>Free exploration</td></tr>
+                <tr><td><strong>Sunday</strong></td><td>IXL</td><td>Maths</td><td>Whatever he finds fun</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ===================== TERMS TAB ===================== -->
+    <div id="terms" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: var(--primary);">🔄 Term-by-Term Progression</h2>
+
+        <div class="day-card monday">
+            <div class="day-header" style="background: #e74c3c;">Term 1 (Feb–Apr) — Letter Sounds</div>
+            <div class="day-body" style="padding: 1.2rem;">
+                <p><strong>Phonics:</strong> Jolly Phonics Workbook 1-2. Letter sounds s,a,t,p,i,n,m,d,g,o,c,k,e,u,r</p>
+                <p><strong>Decodable:</strong> Bob Books Set 1, Books 1-4</p>
+                <p><strong>Bedtime:</strong> Possum Magic, The Gruffalo, Goodnight Moon, Owl Babies</p>
+                <p><strong>Maths:</strong> The Very Hungry Caterpillar, Ten Black Dots. Count to 30.</p>
+            </div>
+        </div>
+
+        <div class="day-card tuesday">
+            <div class="day-header" style="background: #e67e22;">Term 2 (May–Jun) — Blending</div>
+            <div class="day-body" style="padding: 1.2rem;">
+                <p><strong>Phonics:</strong> Jolly Phonics Workbook 3-4. Remaining letters + digraphs (sh, ch, th).</p>
+                <p><strong>Decodable:</strong> Bob Books Set 1 (Books 5-12), Dandelion Readers Unit 1</p>
+                <p><strong>Bedtime:</strong> Wombat Stew, Green Eggs and Ham, Where the Wild Things Are</p>
+                <p><strong>Maths:</strong> Mouse Shapes, Pattern Fish. Count to 50. Add within 5.</p>
+            </div>
+        </div>
+
+        <div class="day-card wednesday">
+            <div class="day-header" style="background: #27ae60;">Term 3 (Jul–Sep) — Decodable Books Take Off</div>
+            <div class="day-body" style="padding: 1.2rem;">
+                <p><strong>Phonics:</strong> Jolly Phonics Workbook 5-6. Consolidate all sounds.</p>
+                <p><strong>Decodable:</strong> Dandelion Readers Units 2-3, PM Readers Level 1-2</p>
+                <p><strong>Bedtime:</strong> Diary of a Wombat, Each Peach Pear Plum, Ada Twist Scientist</p>
+                <p><strong>Maths:</strong> One Is a Snail Ten Is a Crab, Pete the Cat. Count to 70.</p>
+            </div>
+        </div>
+
+        <div class="day-card thursday">
+            <div class="day-header" style="background: #2e86c1;">Term 4 (Oct–Dec) — Building Confidence</div>
+            <div class="day-body" style="padding: 1.2rem;">
+                <p><strong>Phonics:</strong> Jolly Phonics Workbook 7 + sight word flash cards.</p>
+                <p><strong>Decodable:</strong> PM Readers Level 2-3, Oxford Reading Tree Level 1-2</p>
+                <p><strong>Bedtime:</strong> We're Going on a Bear Hunt, Snugglepot and Cuddlepie, Rosie Revere</p>
+                <p><strong>Maths:</strong> 12 Ways to Get to 11, The Doorbell Rang. Count to 100. Add/sub within 10.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== RULES TAB ===================== -->
+    <div id="rules" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: var(--primary);">💡 Golden Rules — Read This Every Week</h2>
+        <div style="background: var(--card-bg); border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <div class="rule"><div class="rule-num">1</div><div><strong>Never force it.</strong> If he's tired or frustrated, stop. Try again tomorrow.</div></div>
+            <div class="rule"><div class="rule-num">2</div><div><strong>Keep it under 15 minutes per activity.</strong> Short bursts beat long slogs.</div></div>
+            <div class="rule"><div class="rule-num">3</div><div><strong>Read aloud every single night.</strong> Non-negotiable. Highest-impact activity.</div></div>
+            <div class="rule"><div class="rule-num">4</div><div><strong>Play IS learning.</strong> LEGO, puzzles, blocks, and board games all count.</div></div>
+            <div class="rule"><div class="rule-num">5</div><div><strong>Talk to him constantly.</strong> Narrate your day, ask questions, expand vocabulary.</div></div>
+            <div class="rule"><div class="rule-num">6</div><div><strong>Be consistent, not intense.</strong> 8 hrs/week gentle practice > 3 hrs weekend cramming.</div></div>
+            <div class="rule"><div class="rule-num">7</div><div><strong>Celebrate everything.</strong> First word read? Party. Counted to 20? High five.</div></div>
+            <div class="rule"><div class="rule-num">8</div><div><strong>Praise effort, not smarts.</strong> "You worked so hard!" not "You're so smart!"</div></div>
+            <div class="rule"><div class="rule-num">9</div><div><strong>Let him struggle a little.</strong> Productive struggle builds resilience.</div></div>
+            <div class="rule"><div class="rule-num">10</div><div><strong>No screens as babysitter.</strong> Educational apps need parent involvement at this age.</div></div>
+        </div>
+    </div>
+
+    <!-- ===================== FRIDGE TAB ===================== -->
+    <div id="fridge" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: var(--primary);">🖨️ Print-Friendly Fridge Card</h2>
+        <p style="margin-bottom: 1rem;">Click the button below then print (Ctrl+P). Only the fridge card will print.</p>
+        <button class="print-btn" onclick="window.print()">🖨️ Print Fridge Card</button>
+
+        <div class="fridge-card">
+            <h3>📅 WEEKDAY SCHEDULE</h3>
+            <strong>Child home 3:30 PM</strong><br><br>
+            3:30 &nbsp; 🍎 Snack + free play<br>
+            4:00 &nbsp; 📱 App time (20 min)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mon: Khan Academy &nbsp; Tue: IXL<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Wed: Duolingo &nbsp; Thu: Khan Academy<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fri: IXL<br>
+            4:20 &nbsp; 🏃 Outdoor play<br>
+            5:00 &nbsp; 🧩 Puzzles / LEGO / drawing<br>
+            5:30 &nbsp; 📺 Quiet play / TV<br><br>
+            <strong>── PARENTS HOME 6:00 PM ──</strong><br><br>
+            6:00 &nbsp; 🍽️ Dinner together<br>
+            6:30 &nbsp; 📖 Phonics (5 min)<br>
+            6:35 &nbsp; 📚 Reading (10 min)<br>
+            6:45 &nbsp; 🔢 Maths game (10 min)<br>
+            6:55 &nbsp; 🎲 Free play / family time<br>
+            7:30 &nbsp; 🛁 Bath + wind down<br>
+            8:00 &nbsp; 🌙 Bedtime read-aloud (15 min)<br>
+            8:30 &nbsp; 💤 Settle → Lights out 9:00 PM<br><br>
+            <strong>TODAY'S FOCUS:</strong><br>
+            Mon: Letter sounds + counting<br>
+            Tue: Blending + shapes<br>
+            Wed: Sight words + patterns<br>
+            Thu: Writing + number games<br>
+            Fri: Fun review + cooking maths
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>📚 Kids Education Roadmap — NSW Selective School Preparation</p>
+    <p><a href="index.html" style="color: var(--primary-light);">← Back to Home</a></p>
+</footer>
+
+<script>
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
