@@ -6,7 +6,7 @@
 >
 > **📱 Our subscriptions: Khan Academy Kids | IXL | Duolingo**
 >
-> **🥋 BJJ: Tuesday 4:00–4:45 PM | Saturday 8:30–9:15 PM**
+> **🥋 BJJ: Tue 4:00 &amp; Sat 8:30 | 🇨🇳 Mandarin: Wed 8:00 PM | 🏊 Swimming: Fri 5:30 | ⛪ Church: Sun 9:00 AM**
 
 ---
 
@@ -14,13 +14,16 @@
 
 - **No TV on weekdays.** Quiet time = colouring, drawing, audiobooks, calm toys.
 - **No organised sport on weekday afternoons** (except BJJ Tuesday). He gets **20 min outdoor climbing at school daily** — physical activity covered!
-- **Tuesday 6:00 PM:** Dad at daughter's piano → Son does IXL independently.
+- **Tuesday 4:00 PM:** BJJ class. IXL moves to 6:00 PM while Dad does daughter's piano at 6:00 PM.
+- **Wednesday 8:00 PM:** Mandarin class. Bedtime shifts to ~9:15–9:30 PM. Bath/story done earlier.
 - **Thursday 6:30 PM:** Dad at daughter's cello → Son does independent workbook practice.
+- **Friday 5:30 PM:** Swimming with sister. Evening routine shifts — already clean from pool!
 - **Saturday bedtime ~10:00 PM** due to BJJ at 8:30 PM. He catches up on Sunday morning.
+- **Sunday 9:00 AM:** Church (whole family). IXL moves to 11:00 AM after church.
 
 ---
 
-## ⏰ Weekday Schedule — Mon/Wed/Fri (Standard Days)
+## ⏰ Weekday Schedule — Mon (Standard Day)
 
 ### 🏠 Child Time — Before Parents Arrive (3:30 – 6:00 PM)
 
@@ -79,6 +82,32 @@ This is where the real magic happens. **Quality time with Mum and Dad.**
 
 ---
 
+## 🇨🇳 Wednesday — Mandarin Day (Special Schedule)
+
+> ⚠️ **Wednesday is different!** Mandarin class at 8:00 PM. Bath and bedtime story happen BEFORE Mandarin. Bedtime shifts to ~9:15–9:30 PM. Sister has Mandarin at 4:20 PM (different time slot).
+
+### Full Wednesday Flow
+
+| Time | Activity | Duration | Details |
+|------|----------|----------|---------|
+| 3:30–4:00 | Free play + snack | 30 min | Decompress from school |
+| 4:00–4:20 | 📱 Duolingo | 20 min | Daily lesson — letter recognition |
+| 4:20–5:00 | 🏠 Backyard / free play | 40 min | Casual play |
+| 5:00–5:30 | 🧩 Puzzles / LEGO | 30 min | |
+| 5:30–6:00 | 🎧 Quiet play | 30 min | **No TV.** |
+| 6:00–6:30 | 🍽️ Dinner together | 30 min | Family dinner |
+| **6:30–6:35** | **📖 Phonics** | **5 min** | Learn 2 sight words — 100 First Words (DK) |
+| **6:35–6:45** | **📚 Reading** | **10 min** | Non-fiction read-aloud — Nat Geo First Big Book of Why |
+| **6:45–6:55** | **🔢 Maths** | **10 min** | Pattern making — Pattern Fish by Trudy Harris |
+| 7:00–7:30 | 🛁 Bath (earlier!) | 30 min | Bath earlier on Wednesday to prep for Mandarin |
+| 7:30–7:45 | 🌙 Quick bedtime read | 15 min | Green Eggs and Ham — earlier tonight |
+| 7:50 | 🚗 Leave for Mandarin | — | Parent takes him |
+| **8:00–8:45** | **🇨🇳 Mandarin class** | **45 min** | **Language &amp; culture** |
+| ~9:00 | 🏠 Travel home | — | Quick wind down |
+| ~9:15–9:30 | 💤 Lights out (later Wed) | — | Extra sleep Thursday morning if needed |
+
+---
+
 ## 🎻 Thursday — Cello Day (Special Schedule)
 
 > ⚠️ **Thursday is different!** Dad at daughter's cello from 6:30 PM. Son does independent workbook practice instead of guided phonics/reading/maths.
@@ -87,7 +116,7 @@ This is where the real magic happens. **Quality time with Mum and Dad.**
 
 | Time | Activity | Duration | Details |
 |------|----------|----------|---------|
-| 4:00–4:20 | 📱 Khan Academy Kids — Maths | 20 min | Numbers → Counting & addition (normal) |
+| 4:00–4:20 | 📱 Khan Academy Kids — Maths | 20 min | Numbers → Counting &amp; addition (normal) |
 | 4:20–5:00 | 🏠 Backyard / free play | 40 min | Normal |
 | 5:00–5:30 | 🧩 Puzzles / LEGO | 30 min | Normal |
 | 5:30–6:00 | 🎧 Quiet play | 30 min | **No TV.** |
@@ -96,6 +125,31 @@ This is where the real magic happens. **Quality time with Mum and Dad.**
 | 7:00–7:30 | 🎲 Free play / family | 30 min | Dad back from cello — family time |
 | 7:30–8:00 | 🛁 Bath + wind down | 30 min | |
 | **8:00–8:20** | **🌙 Bedtime read-aloud (longer)** | **20 min** | **Wombat Stew — extra 5 min to make up for guided reading** |
+| 8:30–9:00 | 💤 Lights out | — | |
+
+---
+
+## 🏊 Friday — Swimming Day (Special Schedule)
+
+> ⚠️ **Friday is different!** Swimming at 5:30 PM with sister. Learning block moves to after dinner (7:00–7:25). Already clean from the pool — quick rinse only!
+
+### Full Friday Flow
+
+| Time | Activity | Duration | Details |
+|------|----------|----------|---------|
+| 3:30–4:00 | Free play + snack | 30 min | Decompress from school |
+| 4:00–4:20 | 📱 IXL — Reading | 20 min | Phonics review — letter sounds, rhyming |
+| 4:20–5:00 | 🏠 Backyard / free play | 40 min | Play before swimming |
+| **5:00–5:15** | **🏊 Get ready** | **15 min** | **Pack swim bag, get changed** |
+| **5:30–6:15** | **🏊 Swimming class** | **45 min** | **With sister — fitness, fun, water safety** |
+| 6:15–6:30 | 🏠 Travel home, change | 15 min | Already clean from pool — quick rinse only |
+| 6:30–7:00 | 🍽️ Dinner together | 30 min | Family dinner |
+| **7:00–7:05** | **📖 Phonics** | **5 min** | Week review quiz — flash cards |
+| **7:05–7:15** | **📚 Reading** | **10 min** | Child's choice — any book! |
+| **7:15–7:25** | **🔢 Maths** | **10 min** | Cooking maths — Pete the Cat: Missing Cupcakes |
+| 7:25–7:30 | Wind down | 5 min | Already clean from pool |
+| 7:30–8:00 | Quiet time / wind down | 30 min | Already had pool rinse — calm activities |
+| **8:00–8:15** | **🌙 Bedtime read-aloud** | **15 min** | Child's choice of book |
 | 8:30–9:00 | 💤 Lights out | — | |
 
 ---
@@ -119,21 +173,25 @@ This is where the real magic happens. **Quality time with Mum and Dad.**
 | Session | Time | Activity | Book / Resource |
 |---------|------|----------|-----------------|
 | 🥋 BJJ | 4:00–4:45 | **Brazilian Jiu-Jitsu** | Class time — discipline, fitness, confidence |
-| 📱 App (20 min) | 6:00–6:20 | **IXL** — Maths (independent) | Kindy Maths → Shapes & counting. Dad at daughter's piano. |
+| 📱 App (20 min) | 6:00–6:20 | **IXL** — Maths (independent) | Kindy Maths → Shapes &amp; counting. Dad at daughter's piano. |
 | 📖 Phonics (5 min) | 7:00–7:05 | Blending CVC words | **Bob Books Set 1 (Book 1-2)** — s-a-t → sat, m-a-t → mat |
 | 📚 Reading (10 min) | 7:05–7:15 | Child reads decodable book | **📕 Dandelion Readers Unit 1** — child reads, parent helps |
 | 🔢 Maths (10 min) | 7:15–7:25 | Shape hunt around the house | **📕 Mouse Shapes** by Ellen Stoll Walsh |
 | 🌙 Bedtime (15 min) | 8:00–8:15 | Parent read-aloud | **📕 The Gruffalo** by Julia Donaldson |
 
-### Wednesday — **Sight Words + Patterns**
+### Wednesday — **Sight Words + Patterns + Mandarin 🇨🇳**
+
+> 🇨🇳 Mandarin at 8:00 PM. Bath &amp; bedtime read moved earlier. Sister at Mandarin 4:20 PM (different slot).
 
 | Session | Time | Activity | Book / Resource |
 |---------|------|----------|-----------------|
-| 📱 App (20 min) | 4:00–4:20 | **Duolingo** (if doing Duolingo ABC for literacy) | Duolingo → Daily lesson. Builds letter recognition and early reading. |
+| 📱 App (20 min) | 4:00–4:20 | **Duolingo** | Duolingo → Daily lesson. Builds letter recognition and early reading. |
 | 📖 Phonics (5 min) | 6:30–6:35 | Learn 2 new sight words | **📕 100 First Words** (DK) — point to words, read them, trace them |
 | 📚 Reading (10 min) | 6:35–6:45 | Non-fiction read-aloud | **📕 National Geographic Little Kids First Big Book of Why** — brilliant for curious kids |
 | 🔢 Maths (10 min) | 6:45–6:55 | Pattern making (beads, blocks) | **📕 Pattern Fish** by Trudy Harris — then make patterns with real objects (AB, ABB, ABC) |
-| 🌙 Bedtime (15 min) | 8:00–8:15 | Parent read-aloud | **📕 Green Eggs and Ham** by Dr. Seuss — rhyme, repetition, phonics play |
+| 🛁 Bath | 7:00–7:30 | Bath (earlier on Wednesday) | Prep for Mandarin |
+| 🌙 Quick read | 7:30–7:45 | Bedtime read (before Mandarin) | **📕 Green Eggs and Ham** by Dr. Seuss — rhyme, repetition, phonics play |
+| 🇨🇳 Mandarin | 8:00–8:45 | **Mandarin class** | Language &amp; culture. Lights out ~9:15–9:30 PM |
 
 ### Thursday — **Independent Workbook Day + Number Games**
 
@@ -141,18 +199,22 @@ This is where the real magic happens. **Quality time with Mum and Dad.**
 
 | Session | Time | Activity | Book / Resource |
 |---------|------|----------|-----------------|
-| 📱 App (20 min) | 4:00–4:20 | **Khan Academy Kids** — Maths | Khan Academy Kids → Numbers section → Counting & addition |
+| 📱 App (20 min) | 4:00–4:20 | **Khan Academy Kids** — Maths | Khan Academy Kids → Numbers section → Counting &amp; addition |
 | 📝 Workbook (30 min) | 6:30–7:00 | **Independent practice** | **Kumon: Uppercase Letters** (15 min) + **Excel Early Skills Maths** (15 min). Self-directed — Dad at cello. |
 | 🌙 Bedtime (20 min) | 8:00–8:20 | Parent read-aloud (longer tonight) | **📕 Wombat Stew** by Marcia Vaughan — extra 5 min to compensate for guided reading |
 
-### Friday — **Fun Review + Cooking Maths**
+### Friday — **Fun Review + Swimming 🏊**
+
+> 🏊 Swimming at 5:30 PM with sister. Learning block moves to 7:00–7:25. Already clean from pool!
 
 | Session | Time | Activity | Book / Resource |
 |---------|------|----------|-----------------|
 | 📱 App (20 min) | 4:00–4:20 | **IXL** — Reading (phonics review) | IXL → Kindy English → "Letter sounds" or "Rhyming words" |
-| 📖 Phonics (5 min) | 6:30–6:35 | Quick review of the week's sounds | Quiz game: "Show me the sound for..." — use this week's flash cards |
-| 📚 Reading (10 min) | 6:35–6:45 | Child's choice — any book! | Let him pick ANY book. Re-reading favourites builds fluency and confidence. |
-| 🔢 Maths (10 min) | 6:45–6:55 | Cooking maths | **📕 Pete the Cat and the Missing Cupcakes** by James Dean — then bake together! Count, measure, set timer. |
+| 🏊 Swim prep | 5:00–5:15 | Get ready for swimming | Pack swim bag, get changed |
+| 🏊 Swimming | 5:30–6:15 | **Swimming class** | With sister — fitness, fun, water safety |
+| 📖 Phonics (5 min) | 7:00–7:05 | Quick review of the week's sounds | Quiz game: "Show me the sound for..." — use this week's flash cards |
+| 📚 Reading (10 min) | 7:05–7:15 | Child's choice — any book! | Let him pick ANY book. Re-reading favourites builds fluency and confidence. |
+| 🔢 Maths (10 min) | 7:15–7:25 | Cooking maths | **📕 Pete the Cat and the Missing Cupcakes** by James Dean — then bake together! Count, measure, set timer. |
 | 🌙 Bedtime (15 min) | 8:00–8:15 | Parent read-aloud — child's choice | Let him choose. Maybe a book from the library visit this weekend! |
 
 ---
@@ -163,13 +225,13 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 
 | Day | Time | App | Focus | What To Do |
 |-----|------|-----|-------|-----------|
-| **Monday** | 4:00–4:20 | Khan Academy Kids | Reading / Phonics | Letters & Sounds section — learn letter sounds, tracing |
+| **Monday** | 4:00–4:20 | Khan Academy Kids | Reading / Phonics | Letters &amp; Sounds section — learn letter sounds, tracing |
 | **Tuesday** | 6:00–6:20 | IXL | Maths | Independent — while Dad at daughter's piano |
 | **Wednesday** | 4:00–4:20 | Duolingo | Literacy / Language | Daily Duolingo lesson — letter recognition, reading |
 | **Thursday** | 4:00–4:20 | Khan Academy Kids | Maths | Numbers section — counting, simple addition |
 | **Friday** | 4:00–4:20 | IXL | Reading / Phonics | Kindy English → Letter sounds, rhyming, CVC words |
 | **Saturday** | 9:00–9:20 | Khan Academy Kids | All-rounder | Free exploration — let him choose what interests him |
-| **Sunday** | 9:30–9:50 | IXL | Maths | Kindy Maths → whatever he finds fun |
+| **Sunday** | 11:00–11:20 | IXL | Maths | After church — whatever he finds fun |
 
 ### Why These Three Apps Work Together
 
@@ -183,14 +245,15 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 
 ---
 
-## 🥋 Brazilian Jiu-Jitsu Schedule
+## 🗓️ All Weekly Activities
 
-| Day | Time | Duration | Notes |
-|-----|------|----------|-------|
-| **Tuesday** | 4:00–4:45 PM | 45 min | Replaces afternoon app time — IXL moves to 6:00 PM |
-| **Saturday** | 8:30–9:15 PM | 45 min | Bedtime shifts to ~10:00 PM on Saturdays |
-
-**Why BJJ is amazing for selective school prep:** Builds focus, resilience, problem-solving under pressure, respect, discipline, and confidence. These are exactly the traits selective schools look for.
+| Activity | Day | Time | Notes |
+|----------|-----|------|-------|
+| **🥋 BJJ** | Tuesday | 4:00–4:45 PM | Replaces afternoon app time — IXL moves to 6:00 PM |
+| **🥋 BJJ** | Saturday | 8:30–9:15 PM | Bedtime shifts to ~10:00 PM |
+| **🇨🇳 Mandarin** | Wednesday | 8:00–8:45 PM | Bath &amp; story done earlier. Bedtime ~9:15–9:30 PM |
+| **🏊 Swimming** | Friday | 5:30–6:15 PM | With sister. Already clean from pool! |
+| **⛪ Church** | Sunday | 9:00 AM (~90 min) | Whole family. IXL moves to 11:00 AM |
 
 ---
 
@@ -227,22 +290,27 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 | 9:45–9:55 | 🌙 **Short bedtime read** | 10 min | Quick calm story or chapter continuation |
 | ~10:00 | 💤 **Lights out** | — | Later bedtime on Saturday only |
 
-### Sunday — **Rest + Family Day**
+### Sunday — **Church + Rest ⛪**
+
+> ⛪ Church at 9:00 AM (whole family). IXL moves to after church. Rest of day is relaxed family time.
 
 | Time | Activity | Duration | Details |
 |------|----------|----------|---------|
-| Morning | Relaxed family time | Flexible | Sleep in after Saturday BJJ. No pressure. If he wants to read — great. If not — fine. |
-| 9:30–9:50 | 📱 **IXL** — Maths fun | 20 min | IXL Kindy Maths — whatever he finds fun today |
-| 10:00–12:00 | 🌳 Family outing | 2 hrs | Museum, beach, bushwalk, market — everything is a learning moment |
+| 8:00–8:30 | 🥣 Breakfast | 30 min | Get ready for church. Sleep in a bit after Saturday BJJ. |
+| 8:30–8:50 | Get ready | 20 min | Dress for church, leave for church |
+| **9:00–10:30** | **⛪ Church** | **~90 min** | **Family church service** |
+| 10:30–11:00 | Home, snack | 30 min | Change out of church clothes, relax |
+| **11:00–11:20** | **📱 IXL — Maths** | **20 min** | After church — whatever he finds fun today |
+| 11:30–12:30 | 🌳 Family outing / outdoor play | 60 min | Park, garden, museum, beach — everything is a learning moment |
 | 12:00–12:30 | Lunch | 30 min | |
 | Afternoon | Free play | Flexible | Drawing, building, imaginative play |
 | 4:00–4:30 | 🔢 **Maths in real life** | 30 min | Cook together, count money at the shops, measure things at home |
 | 6:00–6:30 | Dinner | 30 min | |
 | 7:00–7:30 | 📖 **Bedtime read-aloud** | 30 min | **Maths picture book** (see list) — then rich storybook |
 | 8:00–8:30 | Bath + wind down | 30 min | |
-| 8:30–9:00 | Bedtime | — | Lights out by 9:00 PM |
+| 8:30–9:00 | 💤 Bedtime | — | Lights out by 9:00 PM |
 
-> **Weekend total structured time: ~2 hours/day** spread across the day. Saturday includes BJJ (bedtime ~10pm). Sunday is relaxed.
+> **Weekend total structured time: ~2.5 hours/day** spread across the day. Saturday includes BJJ (bedtime ~10pm). Sunday starts with Church (9am) then relaxed family day.
 
 ---
 
@@ -257,7 +325,10 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 | Thinking skills (puzzles/games) | — | — | — | — | — | 60m | — | ~1hr |
 | Apps (Khan/IXL/Duolingo) | 20m | 20m | 20m | 20m | 20m | 20m | 20m | ~2hr 20m |
 | 🥋 BJJ | — | 45m | — | — | — | 45m | — | ~1hr 30m |
-| **TOTAL STRUCTURED** | **60m** | **1h45** | **60m** | **1h10** | **60m** | **3h15** | **1h10** | **~9.5 hrs/week** |
+| 🇨🇳 Mandarin | — | — | 45m | — | — | — | — | ~45m |
+| 🏊 Swimming | — | — | — | — | 45m | — | — | ~45m |
+| ⛪ Church | — | — | — | — | — | — | 90m | ~1hr 30m |
+| **TOTAL STRUCTURED** | **60m** | **1h45** | **1h45** | **1h10** | **1h45** | **3h15** | **2h40** | **~12.5 hrs/week** |
 
 ---
 
@@ -329,7 +400,7 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 - Can he blend words we practised this week?
 - What book are we reading at bedtime?
 
-### Monthly — Update the [Progress Tracker](../tracking/progress-tracker.md):
+### Monthly — Update the [Progress Tracker](tracker.html):
 - Tick off mastered skills
 - Note areas that need more practice
 - Adjust the schedule if needed
@@ -343,10 +414,11 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 3. **Read aloud every single night.** This is non-negotiable. It's the highest-impact activity.
 4. **Play IS learning.** LEGO, puzzles, blocks, and board games all count.
 5. **Talk to him constantly.** Narrate your day, ask questions, expand vocabulary.
-6. **Be consistent, not intense.** 9.5 hrs/week of gentle practice > 3 hrs of weekend cramming.
+6. **Be consistent, not intense.** 12.5 hrs/week of gentle practice > 3 hrs of weekend cramming.
 7. **Celebrate everything.** First word read? Party. Counted to 20? High five. Wrong answer? "Great try, let's figure it out."
 8. **No TV on weekdays.** Educational apps only (20 min/day). Weekends are flexible.
 9. **BJJ counts as learning.** Discipline, focus, resilience — these are selective school traits.
+10. **Mandarin &amp; Swimming build character.** Language and fitness complement academics perfectly.
 
 ---
 
@@ -356,7 +428,7 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 - [ ] **Bob Books Set 1** (~$20) — Big W, Amazon
 - [ ] **Jolly Phonics Workbook 1** (~$12) — Booktopia
 - [ ] **Magnetic letters** (~$15) — Kmart, Big W
-- [ ] **Snakes & Ladders** (~$10) — Kmart, Big W
+- [ ] **Snakes &amp; Ladders** (~$10) — Kmart, Big W
 
 ### Priority 2: Buy Within a Month
 - [ ] **Dandelion Readers Unit 1** (~$25) — phonicbooks.co.uk
@@ -394,6 +466,7 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 │        ⚠️  Tue: 🥋 BJJ 4:00-4:45!               │
 │  4:20  🏠 Backyard / free play                   │
 │  5:00  🧩 Puzzles / LEGO / drawing               │
+│        ⚠️  Fri: 🏊 Swimming 5:30!                │
 │  5:30  🎧 Quiet play (no TV)                     │
 │                                                  │
 │  ── PARENTS HOME 6:00 PM ──                      │
@@ -407,16 +480,21 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 │  6:55  🎲 Free play / family time                │
 │  7:30  🛁 Bath + wind down                       │
 │  8:00  🌙 Bedtime read-aloud (15 min)            │
+│        ⚠️  Wed 8:00: 🇨🇳 Mandarin!               │
 │  8:30  💤 Settle → Lights out 9:00 PM            │
 │                                                  │
+│  ACTIVITIES:                                     │
 │  🥋 BJJ: Tue 4pm + Sat 8:30pm                    │
+│  🇨🇳 Mandarin: Wed 8pm (bed ~9:15)               │
+│  🏊 Swimming: Fri 5:30pm (with sister)           │
+│  ⛪ Church: Sun 9am (family)                      │
 │                                                  │
 │  TODAY'S FOCUS:                                   │
 │  Mon: Letter sounds + counting                   │
 │  Tue: BJJ + blending + shapes                    │
-│  Wed: Sight words + patterns                     │
+│  Wed: Sight words + patterns + Mandarin          │
 │  Thu: Workbook + number games                    │
-│  Fri: Fun review + cooking maths                 │
+│  Fri: Fun review + swimming                      │
 └──────────────────────────────────────────────────┘
 ```
 
@@ -424,4 +502,4 @@ You have **Khan Academy Kids**, **IXL**, and **Duolingo**. Here's how to use the
 
 *"Routine is liberation." — Consistent daily habits remove the need for willpower and make learning automatic.*
 
-**Back to:** [Phase 1 Guide](../phases/phase-1-kindy-age-5.md) | [Main Roadmap](../README.md)
+**Back to:** [🏠 Home](index.html) | [👨‍👩‍👧‍👦 Family Calendar](family-calendar.html) | [📝 Daughter](daughter.html)
