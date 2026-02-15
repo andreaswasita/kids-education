@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Calendar — Weekly Overlay</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --primary-light: #2e86c1;
+            --accent: #e67e22;
+            --green: #27ae60;
+            --purple: #8e44ad;
+            --red: #c0392b;
+            --pink: #e91e8c;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #e0e0e0;
+            --son-bg: #eaf2f8;
+            --son-border: #2e86c1;
+            --daughter-bg: #f4ecf7;
+            --daughter-border: #8e44ad;
+            --both-bg: #eafaf1;
+            --both-border: #27ae60;
+            --parent-bg: #fef5e7;
+            --parent-border: #e67e22;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white; padding: 2.5rem 2rem; text-align: center;
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
+        .hero .meta { font-size: 1rem; opacity: 0.9; }
+        nav.breadcrumb { background: var(--card-bg); padding: 0.8rem 2rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        nav.breadcrumb a { color: var(--primary-light); text-decoration: none; }
+        nav.breadcrumb a:hover { text-decoration: underline; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; justify-content: center; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+        .legend-dot { width: 16px; height: 16px; border-radius: 4px; }
+        .legend-dot.son { background: var(--son-bg); border: 2px solid var(--son-border); }
+        .legend-dot.daughter { background: var(--daughter-bg); border: 2px solid var(--daughter-border); }
+        .legend-dot.both { background: var(--both-bg); border: 2px solid var(--both-border); }
+        .legend-dot.parent { background: var(--parent-bg); border: 2px solid var(--parent-border); }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(7, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin: 1.5rem 0;
+        }
+        .cal-header {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 0.5rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .cal-time {
+            background: #f0f0f0;
+            padding: 0.4rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cal-cell {
+            background: var(--card-bg);
+            padding: 0.3rem;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .event {
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            line-height: 1.3;
+            border-left: 3px solid;
+        }
+        .event.son { background: var(--son-bg); border-left-color: var(--son-border); color: #1a5276; }
+        .event.daughter { background: var(--daughter-bg); border-left-color: var(--daughter-border); color: #6c3483; }
+        .event.both { background: var(--both-bg); border-left-color: var(--both-border); color: #1e8449; }
+        .event.parent { background: var(--parent-bg); border-left-color: var(--parent-border); color: #935116; }
+        .event strong { display: block; }
+        .section-title { font-size: 1.3rem; color: var(--primary); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
+        .logistics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .logistics-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .logistics-card h4 { color: var(--primary); margin-bottom: 0.8rem; font-size: 1rem; }
+        .logistics-card table { width: 100%; border-collapse: collapse; }
+        .logistics-card th { text-align: left; padding: 0.4rem 0.6rem; font-size: 0.8rem; background: #f5f5f5; }
+        .logistics-card td { padding: 0.4rem 0.6rem; font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+        .logistics-card tr:last-child td { border-bottom: none; }
+        .info-box { background: #eaf2f8; border-left: 4px solid var(--primary-light); border-radius: 8px; padding: 0.8rem 1.2rem; margin: 0.8rem 0; font-size: 0.9rem; }
+        .info-box.warning { background: #fdf2e9; border-left-color: var(--accent); }
+        .activities-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .activity-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            border-top: 3px solid var(--primary-light);
+        }
+        .activity-item h5 { color: var(--primary); margin-bottom: 0.3rem; }
+        .activity-item .who { font-size: 0.8rem; color: var(--text-light); }
+        .activity-item .when { font-weight: 600; color: var(--accent); font-size: 0.85rem; }
+        .btn-links { display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0; justify-content: center; }
+        .btn-link { display: inline-block; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+        .btn-link.son-btn { background: var(--son-bg); color: var(--primary); border: 2px solid var(--son-border); }
+        .btn-link.daughter-btn { background: var(--daughter-bg); color: var(--purple); border: 2px solid var(--daughter-border); }
+        .btn-link:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        footer { text-align: center; padding: 2rem; color: var(--text-light); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        @media print { .hero, nav, footer, .btn-links { display: none; } }
+        @media (max-width: 800px) {
+            .calendar-grid { font-size: 0.7rem; grid-template-columns: 50px repeat(7, 1fr); }
+            .cal-header { padding: 0.5rem 0.2rem; font-size: 0.7rem; }
+            .cal-time { font-size: 0.65rem; padding: 0.3rem; }
+            .event { font-size: 0.6rem; padding: 0.15rem 0.3rem; }
+            .hero h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+    <a href="index.html">🏠 Home</a> &rsaquo; Family Calendar
+</nav>
+
+<div class="hero">
+    <h1>👨‍👩‍👧‍👦 Family Calendar — Weekly Overlay</h1>
+    <div class="meta">Both kids' schedules side-by-side · Parent logistics · Shared activities</div>
+</div>
+
+<div class="container">
+
+    <div class="legend">
+        <div class="legend-item"><div class="legend-dot son"></div> Son (Kindy, Age 5)</div>
+        <div class="legend-item"><div class="legend-dot daughter"></div> Daughter (Year 5, Age 10)</div>
+        <div class="legend-item"><div class="legend-dot both"></div> Both Kids / Family</div>
+        <div class="legend-item"><div class="legend-dot parent"></div> Parent Note</div>
+    </div>
+
+    <div class="btn-links">
+        <a href="schedule.html" class="btn-link son-btn">📅 Son's Full Schedule →</a>
+        <a href="daughter.html" class="btn-link daughter-btn">📝 Daughter's Full Schedule →</a>
+    </div>
+
+    <!-- =============== WEEKLY CALENDAR GRID =============== -->
+    <div class="calendar-grid">
+        <!-- Headers -->
+        <div class="cal-header">Time</div>
+        <div class="cal-header">MON</div>
+        <div class="cal-header">TUE</div>
+        <div class="cal-header">WED</div>
+        <div class="cal-header">THU</div>
+        <div class="cal-header">FRI</div>
+        <div class="cal-header">SAT</div>
+        <div class="cal-header">SUN</div>
+
+        <!-- 3:30 PM -->
+        <div class="cal-time">3:30</div>
+        <div class="cal-cell">
+            <div class="event both">🍎 Snack + free play</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍎 Snack</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍎 Snack</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍎 Snack</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍎 Snack</div>
+        </div>
+        <div class="cal-cell"></div>
+        <div class="cal-cell"></div>
+
+        <!-- 4:00 PM -->
+        <div class="cal-time">4:00</div>
+        <div class="cal-cell">
+            <div class="event son"><strong>📱 Khan Academy</strong></div>
+            <div class="event daughter"><strong>📝 Homework</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son" style="background: #fce4ec; border-left-color: #c0392b;"><strong>🥋 BJJ 4:00</strong></div>
+            <div class="event daughter"><strong>📝 Homework</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son"><strong>📱 Duolingo</strong></div>
+            <div class="event daughter" style="background: #fff3e0; border-left-color: #e67e22;"><strong>🇨🇳 Mandarin 4:20</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son"><strong>📱 Khan Academy</strong></div>
+            <div class="event daughter"><strong>📝 Homework</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son"><strong>📱 IXL</strong></div>
+            <div class="event daughter"><strong>📝 Homework</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son"><strong>📱 Khan Academy</strong></div>
+            <div class="event daughter"><strong>📝 Practice Test 9am</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both" style="background: #fff3e0; border-left-color: #e67e22;"><strong>⛪ Church 9am</strong></div>
+        </div>
+
+        <!-- 4:30 PM -->
+        <div class="cal-time">4:30</div>
+        <div class="cal-cell">
+            <div class="event son">🏠 Free play</div>
+            <div class="event daughter"><strong>📱 IXL Maths</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🥋 BJJ (cont.)</div>
+            <div class="event daughter"><strong>📱 IXL Maths</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🏠 Free play</div>
+            <div class="event daughter">🇨🇳 Mandarin (cont.)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🏠 Free play</div>
+            <div class="event daughter"><strong>📱 IXL Maths</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🏠 Free play</div>
+            <div class="event daughter">📖 Light reading</div>
+        </div>
+        <div class="cal-cell"></div>
+        <div class="cal-cell"></div>
+
+        <!-- 5:00 PM -->
+        <div class="cal-time">5:00</div>
+        <div class="cal-cell">
+            <div class="event son">🧩 Puzzles/LEGO</div>
+            <div class="event daughter">🎵 Music practice</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">Cool down / play</div>
+            <div class="event daughter">🎹 Piano warm-up</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🧩 Puzzles/LEGO</div>
+            <div class="event daughter">📝 Homework</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🧩 Puzzles/LEGO</div>
+            <div class="event daughter">🧠 Gen Ability</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🏊 Get ready swim</div>
+        </div>
+        <div class="cal-cell"></div>
+        <div class="cal-cell"></div>
+
+        <!-- 5:30 PM -->
+        <div class="cal-time">5:30</div>
+        <div class="cal-cell">
+            <div class="event son">🎧 Quiet play</div>
+            <div class="event daughter">Free time</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🎧 Quiet play</div>
+            <div class="event daughter">Get ready piano</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🎧 Quiet play</div>
+            <div class="event daughter">🎻 Cello practice</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🎧 Quiet play</div>
+            <div class="event daughter">🎻 Cello + get ready</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both" style="background: #e3f2fd; border-left-color: #1976d2;"><strong>🏊 Swimming 5:30</strong></div>
+        </div>
+        <div class="cal-cell"></div>
+        <div class="cal-cell"></div>
+
+        <!-- 6:00 PM -->
+        <div class="cal-time">6:00</div>
+        <div class="cal-cell">
+            <div class="event both">🍽️ Dinner</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son"><strong>📱 IXL (independent)</strong></div>
+            <div class="event daughter" style="background: #c8e6c9; border-left-color: #27ae60;"><strong>🎹 Piano 6:00</strong></div>
+            <div class="event parent">Dad @ piano</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍽️ Dinner</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍽️ Dinner</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🏊 → Home, change</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍽️ Dinner</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍽️ Dinner</div>
+        </div>
+
+        <!-- 6:30 PM -->
+        <div class="cal-time">6:30</div>
+        <div class="cal-cell">
+            <div class="event son">📖 Phonics (5m)</div>
+            <div class="event daughter"><strong>📐 Maths workbook</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍽️ Dinner (after piano)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">📖 Phonics (5m)</div>
+            <div class="event daughter"><strong>📝 Writing practice</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son"><strong>📝 Workbook (indep.)</strong></div>
+            <div class="event daughter" style="background: #c8e6c9; border-left-color: #27ae60;"><strong>🎻 Cello 6:30</strong></div>
+            <div class="event parent">Dad @ cello</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🍽️ Dinner</div>
+        </div>
+        <div class="cal-cell"></div>
+        <div class="cal-cell"></div>
+
+        <!-- 7:00 PM -->
+        <div class="cal-time">7:00</div>
+        <div class="cal-cell">
+            <div class="event son">🎲 Free play</div>
+            <div class="event daughter">Free time / reading</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">📖 Phonics/Reading</div>
+            <div class="event daughter">📖 Reading comp</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🎲 Free play</div>
+            <div class="event daughter"><strong>📱 IXL Maths</strong></div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🎲 Free play</div>
+            <div class="event daughter">🎻 Cello (cont.)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">🎬 Free time / movie</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">📖 Family reading</div>
+            <div class="event daughter">Free time</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event daughter">📋 Plan next week</div>
+            <div class="event son">📖 Bedtime read</div>
+        </div>
+
+        <!-- 7:30 PM -->
+        <div class="cal-time">7:30</div>
+        <div class="cal-cell">
+            <div class="event son">🛁 Bath</div>
+            <div class="event daughter">Free time</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🛁 Bath</div>
+            <div class="event daughter">Free time / reading</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🛁 Bath + get ready</div>
+            <div class="event daughter">Free time</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🛁 Bath</div>
+            <div class="event daughter">Light study</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🛁 (clean from pool)</div>
+            <div class="event daughter">Free time</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">Get ready BJJ</div>
+            <div class="event daughter">Free time</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🛁 Bath</div>
+            <div class="event daughter">📖 Reading</div>
+        </div>
+
+        <!-- 8:00 PM -->
+        <div class="cal-time">8:00</div>
+        <div class="cal-cell">
+            <div class="event son">🌙 Bedtime read</div>
+            <div class="event daughter">Get ready for bed</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🌙 Bedtime read</div>
+            <div class="event daughter">Get ready for bed</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son" style="background: #fff3e0; border-left-color: #e67e22;"><strong>🇨🇳 Mandarin 8pm</strong></div>
+            <div class="event daughter">Get ready for bed</div>
+            <div class="event parent">Parent takes son</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🌙 Bedtime read</div>
+            <div class="event daughter">Get ready for bed</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🌙 Bedtime read</div>
+            <div class="event daughter">Get ready for bed</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son" style="background: #fce4ec; border-left-color: #c0392b;"><strong>🥋 BJJ prep</strong></div>
+            <div class="event daughter">Free time / reading</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🛁 Wind down</div>
+            <div class="event daughter">Wind down</div>
+        </div>
+
+        <!-- 8:30 PM -->
+        <div class="cal-time">8:30</div>
+        <div class="cal-cell">
+            <div class="event son">💤 Settle → 9pm</div>
+            <div class="event daughter">📖 Reading in bed</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">💤 Settle → 9pm</div>
+            <div class="event daughter">📖 Reading in bed</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🇨🇳 Mandarin (cont.)</div>
+            <div class="event daughter">📖 Reading in bed</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">💤 Settle → 9pm</div>
+            <div class="event daughter">Wind down</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">💤 Settle → 9pm</div>
+            <div class="event daughter">Wind down</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son" style="background: #fce4ec; border-left-color: #c0392b;"><strong>🥋 BJJ 8:30</strong></div>
+            <div class="event daughter">📖 Reading in bed</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event both">💤 Bedtime</div>
+        </div>
+
+        <!-- 9:00 PM -->
+        <div class="cal-time">9:00</div>
+        <div class="cal-cell">
+            <div class="event son">💤 Lights out</div>
+            <div class="event daughter">💤 Lights out (9:30)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">💤 Lights out</div>
+            <div class="event daughter">💤 Lights out (9:30)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🇨🇳 → Home → bed</div>
+            <div class="event daughter">💤 Lights out (9:30)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">💤 Lights out</div>
+            <div class="event daughter">💤 Lights out (9:30)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">💤 Lights out</div>
+            <div class="event daughter">💤 Lights out (9:30)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">🥋 BJJ (cont.)</div>
+            <div class="event daughter">💤 Lights out (9:30)</div>
+        </div>
+        <div class="cal-cell">
+            <div class="event son">💤 Lights out</div>
+            <div class="event daughter">💤 Lights out (9:30)</div>
+        </div>
+    </div>
+
+    <!-- =============== ACTIVITIES SUMMARY =============== -->
+    <h2 class="section-title">📋 All Activities at a Glance</h2>
+    <div class="activities-list">
+        <div class="activity-item" style="border-top-color: #c0392b;">
+            <h5>🥋 BJJ</h5>
+            <div class="who">Son only</div>
+            <div class="when">Tue 4:00–4:45 PM · Sat 8:30–9:15 PM</div>
+        </div>
+        <div class="activity-item" style="border-top-color: #27ae60;">
+            <h5>🎹 Piano Lesson</h5>
+            <div class="who">Daughter · Dad takes her</div>
+            <div class="when">Tuesday 6:00 PM</div>
+        </div>
+        <div class="activity-item" style="border-top-color: #8e44ad;">
+            <h5>🎻 Cello Lesson</h5>
+            <div class="who">Daughter · Dad takes her</div>
+            <div class="when">Thursday 6:30 PM</div>
+        </div>
+        <div class="activity-item" style="border-top-color: #e67e22;">
+            <h5>🇨🇳 Mandarin — Daughter</h5>
+            <div class="who">Daughter · Carer takes her</div>
+            <div class="when">Wednesday 4:20 PM</div>
+        </div>
+        <div class="activity-item" style="border-top-color: #e67e22;">
+            <h5>🇨🇳 Mandarin — Son</h5>
+            <div class="who">Son · Parent takes him</div>
+            <div class="when">Wednesday 8:00 PM</div>
+        </div>
+        <div class="activity-item" style="border-top-color: #1976d2;">
+            <h5>🏊 Swimming</h5>
+            <div class="who">Both kids together</div>
+            <div class="when">Friday 5:30 PM</div>
+        </div>
+        <div class="activity-item" style="border-top-color: #2e86c1;">
+            <h5>⛪ Church</h5>
+            <div class="who">Whole family</div>
+            <div class="when">Sunday 9:00 AM</div>
+        </div>
+    </div>
+
+    <!-- =============== PARENT LOGISTICS =============== -->
+    <h2 class="section-title">👨‍👩‍👧‍👦 Parent Logistics — Who Goes Where</h2>
+    <div class="info-box warning">
+        ⚠️ <strong>Busiest days:</strong> Tuesday (BJJ + Piano) and Wednesday (Mandarin x2) require careful coordination between parents.
+    </div>
+
+    <div class="logistics-grid">
+        <div class="logistics-card">
+            <h4>📅 Monday — Standard Day</h4>
+            <table>
+                <tr><td>3:30–6:00</td><td>Both kids with carer</td></tr>
+                <tr><td>6:00+</td><td>Both parents home — normal routine</td></tr>
+            </table>
+        </div>
+        <div class="logistics-card" style="border-left: 4px solid var(--green);">
+            <h4>📅 Tuesday — Split Duties ⚠️</h4>
+            <table>
+                <tr><td>3:30–4:00</td><td>Both kids with carer</td></tr>
+                <tr><td>4:00–4:45</td><td><strong>Son → BJJ</strong> (carer takes)</td></tr>
+                <tr><td>4:00–5:30</td><td>Daughter: homework + IXL + piano prep</td></tr>
+                <tr><td>6:00</td><td><strong>Dad → takes daughter to Piano</strong></td></tr>
+                <tr><td>6:00</td><td><strong>Son → IXL independently</strong> (Mum supervises)</td></tr>
+                <tr><td>6:45</td><td>Dad + daughter back from piano → dinner</td></tr>
+            </table>
+        </div>
+        <div class="logistics-card" style="border-left: 4px solid var(--accent);">
+            <h4>📅 Wednesday — Mandarin x2 ⚠️</h4>
+            <table>
+                <tr><td>3:30</td><td>Both kids with carer</td></tr>
+                <tr><td>4:20</td><td><strong>Daughter → Mandarin</strong> (carer takes)</td></tr>
+                <tr><td>~5:10</td><td>Daughter home from Mandarin</td></tr>
+                <tr><td>6:00</td><td>Parents home — dinner together</td></tr>
+                <tr><td>7:50</td><td><strong>Parent → takes Son to Mandarin 8pm</strong></td></tr>
+                <tr><td>~8:45</td><td>Son home from Mandarin → quick bedtime</td></tr>
+                <tr><td>~9:15</td><td>Son lights out (later on Wednesday)</td></tr>
+            </table>
+        </div>
+        <div class="logistics-card" style="border-left: 4px solid var(--purple);">
+            <h4>📅 Thursday — Cello Night</h4>
+            <table>
+                <tr><td>3:30–6:00</td><td>Both kids with carer</td></tr>
+                <tr><td>6:00</td><td>Parents home — quick dinner</td></tr>
+                <tr><td>6:30</td><td><strong>Dad → takes daughter to Cello</strong></td></tr>
+                <tr><td>6:30</td><td><strong>Son → independent workbook</strong> (Mum supervises)</td></tr>
+                <tr><td>~7:15</td><td>Dad + daughter back from cello</td></tr>
+            </table>
+        </div>
+        <div class="logistics-card" style="border-left: 4px solid #1976d2;">
+            <h4>📅 Friday — Swimming Together</h4>
+            <table>
+                <tr><td>3:30–5:00</td><td>Both kids with carer</td></tr>
+                <tr><td>5:15</td><td>Get ready for swimming</td></tr>
+                <tr><td>5:30</td><td><strong>Both kids → Swimming</strong> (carer takes)</td></tr>
+                <tr><td>~6:15</td><td>Home from swimming → parents home → dinner</td></tr>
+                <tr><td>Evening</td><td>Relaxed — movie night if desired</td></tr>
+            </table>
+        </div>
+        <div class="logistics-card" style="border-left: 4px solid var(--red);">
+            <h4>📅 Saturday — Practice Test + BJJ</h4>
+            <table>
+                <tr><td>9:00</td><td>Son: Khan Academy · <strong>Daughter: Practice test</strong> (parent supervises)</td></tr>
+                <tr><td>10:00</td><td>Review daughter's test together</td></tr>
+                <tr><td>Day</td><td>Free time, activities, outings</td></tr>
+                <tr><td>7:30</td><td><strong>Parent → takes Son to BJJ 8:30</strong></td></tr>
+                <tr><td>8:30</td><td>Other parent with daughter (bedtime ~9:30)</td></tr>
+                <tr><td>~10:00</td><td>Son home → lights out</td></tr>
+            </table>
+        </div>
+        <div class="logistics-card" style="border-left: 4px solid #2e86c1;">
+            <h4>📅 Sunday — Church + Rest</h4>
+            <table>
+                <tr><td>8:30</td><td>Whole family gets ready</td></tr>
+                <tr><td>9:00</td><td><strong>⛪ Church</strong> — whole family</td></tr>
+                <tr><td>~10:30</td><td>Home from church</td></tr>
+                <tr><td>11:00</td><td>Son: IXL · Daughter: light review (optional)</td></tr>
+                <tr><td>Rest</td><td>Family time — no heavy study</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- =============== WEEKLY HOURS =============== -->
+    <h2 class="section-title">📊 Weekly Hours Comparison</h2>
+    <table>
+        <thead><tr><th>Category</th><th>Son (Kindy)</th><th>Daughter (Yr 5)</th><th>Notes</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Academic study</strong></td><td>~5.5 hrs</td><td>~8 hrs</td><td>Age-appropriate difference. Son is play-based.</td></tr>
+            <tr><td><strong>Apps / screen learning</strong></td><td>~2.5 hrs</td><td>~2 hrs</td><td>Son: Khan/IXL/Duolingo. Daughter: IXL Maths.</td></tr>
+            <tr><td><strong>Music</strong></td><td>—</td><td>~4 hrs</td><td>Piano + cello lessons + daily practice</td></tr>
+            <tr><td><strong>Sport / physical</strong></td><td>~2.5 hrs</td><td>~1 hr</td><td>Son: BJJ (2x). Both: Swimming (1x). Son: climbing at school.</td></tr>
+            <tr><td><strong>Language</strong></td><td>~45 min</td><td>~50 min</td><td>Both: Mandarin (Wednesday)</td></tr>
+            <tr><td><strong>Church</strong></td><td colspan="2" style="text-align: center;">~1.5 hrs</td><td>Sunday 9am — whole family</td></tr>
+            <tr class="highlight-row"><td><strong>TOTAL structured</strong></td><td><strong>~11 hrs</strong></td><td><strong>~17 hrs</strong></td><td>Both have plenty of free time built in!</td></tr>
+        </tbody>
+    </table>
+
+    <div class="info-box">
+        💡 <strong>Key difference:</strong> Son's learning is play-based (40 min/day structured + games). Daughter's is study-based (1.5 hrs/day + practice test weekends). Both schedules protect free time and sleep.
+    </div>
+
+    <div class="btn-links">
+        <a href="schedule.html" class="btn-link son-btn">📅 Son's Full Schedule →</a>
+        <a href="daughter.html" class="btn-link daughter-btn">📝 Daughter's Full Schedule →</a>
+        <a href="index.html" class="btn-link" style="background: #eafaf1; color: #1e8449; border: 2px solid #27ae60;">🏠 Back to Home →</a>
+    </div>
+</div>
+
+<footer>
+    <p>👨‍👩‍👧‍👦 Family Calendar — Both Kids' Education Plans</p>
+    <p><a href="index.html" style="color: var(--primary-light);">← Home</a></p>
+</footer>
+
+</body>
+</html>
