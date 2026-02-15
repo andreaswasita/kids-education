@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kids Education — Selective School Roadmap</title>
+    <title>Kids Education — Family Learning Hub</title>
     <style>
         :root {
             --primary: #1a5276;
@@ -12,6 +12,7 @@
             --green: #27ae60;
             --purple: #8e44ad;
             --red: #c0392b;
+            --pink: #e91e8c;
             --bg: #f8f9fa;
             --card-bg: #ffffff;
             --text: #2c3e50;
@@ -35,36 +36,100 @@
         .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
         .hero .subtitle { font-size: 1rem; opacity: 0.7; margin-top: 0.5rem; }
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
-        .nav-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+
+        /* Family Calendar Banner */
+        .family-banner {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
             margin-top: -2rem;
             position: relative;
             z-index: 1;
-        }
-        .nav-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            color: white;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
             text-decoration: none;
-            color: inherit;
-            border-left: 4px solid var(--primary-light);
+            display: block;
         }
-        .nav-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        .family-banner:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+        .family-banner h2 { font-size: 1.3rem; margin-bottom: 0.3rem; }
+        .family-banner p { opacity: 0.9; font-size: 0.95rem; }
+
+        /* Kid Sections */
+        .kids-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
         }
-        .nav-card .icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
-        .nav-card h3 { color: var(--primary); font-size: 1.1rem; margin-bottom: 0.3rem; }
-        .nav-card p { color: var(--text-light); font-size: 0.9rem; }
-        .nav-card.schedule { border-left-color: var(--accent); }
-        .nav-card.phase { border-left-color: var(--green); }
-        .nav-card.resource { border-left-color: var(--purple); }
-        .nav-card.tracking { border-left-color: var(--red); }
+        .kid-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .kid-header {
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+        }
+        .kid-header.son { background: linear-gradient(135deg, var(--accent) 0%, #d35400 100%); }
+        .kid-header.daughter { background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%); }
+        .kid-header h3 { font-size: 1.3rem; margin-bottom: 0.3rem; }
+        .kid-header .kid-meta { font-size: 0.9rem; opacity: 0.9; }
+        .kid-body { padding: 1.5rem; }
+        .kid-nav { display: flex; flex-direction: column; gap: 0.8rem; }
+        .kid-link {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 0.8rem 1rem; border-radius: 8px;
+            text-decoration: none; color: var(--text);
+            background: var(--bg); transition: all 0.2s;
+        }
+        .kid-link:hover { background: #e8e8e8; transform: translateX(5px); }
+        .kid-link .link-icon { font-size: 1.5rem; }
+        .kid-link .link-text h4 { font-size: 0.95rem; color: var(--primary); }
+        .kid-link .link-text p { font-size: 0.8rem; color: var(--text-light); }
+
+        /* Quick Info */
+        .quick-info {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .quick-info h3 { color: var(--primary); margin-bottom: 0.8rem; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        .info-item { text-align: center; }
+        .info-item .number { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .info-item .label { font-size: 0.85rem; color: var(--text); }
+
+        /* Activities */
+        .activities-banner {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin: 1.5rem 0;
+        }
+        .activities-banner h3 { color: var(--primary); margin-bottom: 1rem; }
+        .activity-pills {
+            display: flex; flex-wrap: wrap; gap: 0.8rem;
+        }
+        .activity-pill {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .activity-pill.son { background: #eaf2f8; color: #1a5276; border: 1px solid #2e86c1; }
+        .activity-pill.daughter { background: #f4ecf7; color: #6c3483; border: 1px solid #8e44ad; }
+        .activity-pill.both { background: #eafaf1; color: #1e8449; border: 1px solid #27ae60; }
+
         .section-title {
             font-size: 1.4rem;
             color: var(--primary);
@@ -88,21 +153,14 @@
         .phase-card .age { color: var(--accent); font-weight: 600; font-size: 0.85rem; }
         .phase-card ul { padding-left: 1.2rem; margin-top: 0.5rem; }
         .phase-card li { font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.2rem; }
-        .quick-info {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            border-radius: 12px;
-            padding: 1.5rem 2rem;
-            margin: 2rem 0;
+        .golden-rules {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .quick-info h3 { color: var(--primary); margin-bottom: 0.8rem; }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        .info-item { text-align: center; }
-        .info-item .number { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
-        .info-item .label { font-size: 0.85rem; color: var(--text); }
+        .golden-rules ol { padding-left: 1.5rem; }
+        .golden-rules li { margin-bottom: 0.6rem; }
         footer {
             text-align: center;
             padding: 2rem;
@@ -115,68 +173,155 @@
             .hero h1 { font-size: 1.8rem; }
             .hero p { font-size: 1rem; }
             .container { padding: 1rem; }
+            .kids-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
 <div class="hero">
-    <h1>📚 Kids Education Roadmap</h1>
-    <p>NSW Selective School Preparation — From Kindy to Year 6</p>
+    <h1>📚 Kids Education Hub</h1>
+    <p>Two Kids · One Family · Selective Schools &amp; Scholarships · Sydney NSW</p>
     <div class="subtitle">Evidence-based, parent-friendly, fun-first approach</div>
 </div>
 
 <div class="container">
-    <div class="nav-cards">
-        <a href="schedule.html" class="nav-card schedule">
-            <div class="icon">📅</div>
-            <h3>Daily Schedule</h3>
-            <p>Detailed day-by-day plan — weekday routine, weekend activities, app rotation, book assignments</p>
-        </a>
-        <a href="books.html" class="nav-card resource">
-            <div class="icon">📖</div>
-            <h3>Books & Resources</h3>
-            <p>40+ recommended books, decodable readers, workbooks, maths picture books + shopping list</p>
-        </a>
-        <a href="apps.html" class="nav-card schedule">
-            <div class="icon">📱</div>
-            <h3>Apps & Digital</h3>
-            <p>Khan Academy Kids, IXL, Duolingo — how to use each, daily rotation plan</p>
-        </a>
-        <a href="tracker.html" class="nav-card tracking">
-            <div class="icon">📊</div>
-            <h3>Progress Tracker</h3>
-            <p>Milestone checklists, term targets, skills tracker — tick off as you go</p>
-        </a>
+
+    <a href="family-calendar.html" class="family-banner">
+        <h2>👨‍👩‍👧‍👦 Family Calendar — Weekly Overlay</h2>
+        <p>See both kids' schedules side-by-side · Parent logistics · Shared activities · Click to view →</p>
+    </a>
+
+    <!-- ========= TWO KIDS ========= -->
+    <div class="kids-grid">
+        <!-- SON -->
+        <div class="kid-section">
+            <div class="kid-header son">
+                <h3>👦 Son — Kindy (Age 5)</h3>
+                <div class="kid-meta">Selective School Roadmap · Letter sounds → Reading</div>
+            </div>
+            <div class="kid-body">
+                <div class="kid-nav">
+                    <a href="schedule.html" class="kid-link">
+                        <span class="link-icon">📅</span>
+                        <div class="link-text">
+                            <h4>Daily Schedule</h4>
+                            <p>Day-by-day plan — weekday, weekend, BJJ, fridge card</p>
+                        </div>
+                    </a>
+                    <a href="books.html" class="kid-link">
+                        <span class="link-icon">📖</span>
+                        <div class="link-text">
+                            <h4>Books &amp; Resources</h4>
+                            <p>40+ books, decodable readers, workbooks, shopping list</p>
+                        </div>
+                    </a>
+                    <a href="apps.html" class="kid-link">
+                        <span class="link-icon">📱</span>
+                        <div class="link-text">
+                            <h4>Apps, BJJ &amp; Digital</h4>
+                            <p>Khan Academy, IXL, Duolingo — rotation plan</p>
+                        </div>
+                    </a>
+                    <a href="tracker.html" class="kid-link">
+                        <span class="link-icon">📊</span>
+                        <div class="link-text">
+                            <h4>Progress Tracker</h4>
+                            <p>Milestone checklists — tick off as you go</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAUGHTER -->
+        <div class="kid-section">
+            <div class="kid-header daughter">
+                <h3>👧 Daughter — Year 5 (Age 10)</h3>
+                <div class="kid-meta">NAPLAN + Private School Scholarships · Maths focus</div>
+            </div>
+            <div class="kid-body">
+                <div class="kid-nav">
+                    <a href="daughter.html" class="kid-link">
+                        <span class="link-icon">📝</span>
+                        <div class="link-text">
+                            <h4>NAPLAN &amp; Scholarship Prep</h4>
+                            <p>Full schedule, NAPLAN plan, scholarship info, maths boost, resources</p>
+                        </div>
+                    </a>
+                    <a href="daughter.html#naplan" class="kid-link" onclick="localStorage.setItem('daughter-tab','naplan')">
+                        <span class="link-icon">📊</span>
+                        <div class="link-text">
+                            <h4>NAPLAN Year 5</h4>
+                            <p>4-week sprint plan — Reading, Writing, Conventions, Numeracy</p>
+                        </div>
+                    </a>
+                    <a href="daughter.html#scholarship" class="kid-link" onclick="localStorage.setItem('daughter-tab','scholarship')">
+                        <span class="link-icon">🏫</span>
+                        <div class="link-text">
+                            <h4>Scholarship Prep</h4>
+                            <p>ACER, EduTest, General Ability — private school entry</p>
+                        </div>
+                    </a>
+                    <a href="daughter.html#maths" class="kid-link" onclick="localStorage.setItem('daughter-tab','maths')">
+                        <span class="link-icon">🔢</span>
+                        <div class="link-text">
+                            <h4>Maths Boost Plan</h4>
+                            <p>Daily IXL + workbook — build confidence in her weak area</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- ========= QUICK INFO ========= -->
     <div class="quick-info">
-        <h3>⏰ At a Glance — Your Daily Routine</h3>
+        <h3>⏰ Family Overview</h3>
         <div class="info-grid">
             <div class="info-item">
                 <div class="number">3:30</div>
-                <div class="label">Child arrives home</div>
+                <div class="label">Kids arrive home</div>
             </div>
             <div class="info-item">
                 <div class="number">6:00</div>
                 <div class="label">Parents arrive home</div>
             </div>
             <div class="info-item">
-                <div class="number">40m</div>
-                <div class="label">Structured learning/day</div>
-            </div>
-            <div class="info-item">
                 <div class="number">9:00</div>
-                <div class="label">Lights out</div>
+                <div class="label">Son lights out</div>
             </div>
             <div class="info-item">
-                <div class="number">~8h</div>
-                <div class="label">Total per week</div>
+                <div class="number">9:30</div>
+                <div class="label">Daughter lights out</div>
+            </div>
+            <div class="info-item">
+                <div class="number">7</div>
+                <div class="label">Weekly activities</div>
+            </div>
+            <div class="info-item">
+                <div class="number">⛪ Sun</div>
+                <div class="label">Church 9am</div>
             </div>
         </div>
     </div>
 
-    <h2 class="section-title">🗺️ The Roadmap — 7 Year Journey</h2>
+    <!-- ========= ACTIVITIES ========= -->
+    <div class="activities-banner">
+        <h3>🗓️ Weekly Activities</h3>
+        <div class="activity-pills">
+            <span class="activity-pill son">🥋 BJJ — Tue 4pm &amp; Sat 8:30pm</span>
+            <span class="activity-pill daughter">🎹 Piano — Tue 6pm</span>
+            <span class="activity-pill daughter">🎻 Cello — Thu 6:30pm</span>
+            <span class="activity-pill daughter">🇨🇳 Mandarin — Wed 4:20pm</span>
+            <span class="activity-pill son">🇨🇳 Mandarin — Wed 8pm</span>
+            <span class="activity-pill both">🏊 Swimming — Fri 5:30pm</span>
+            <span class="activity-pill both">⛪ Church — Sun 9am</span>
+        </div>
+    </div>
+
+    <!-- ========= ROADMAP ========= -->
+    <h2 class="section-title">🗺️ Son's Roadmap — 7 Year Journey to Selective School</h2>
     <div class="phase-grid">
         <div class="phase-card" style="border-top-color: #e74c3c;">
             <h4>Phase 1: Kindy</h4>
@@ -240,23 +385,24 @@
         </div>
     </div>
 
-    <h2 class="section-title">💡 Golden Rules</h2>
-    <div style="background: var(--card-bg); border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-        <ol style="padding-left: 1.5rem;">
-            <li style="margin-bottom: 0.6rem;"><strong>Never force it.</strong> If he's tired or frustrated, stop. Try again tomorrow.</li>
-            <li style="margin-bottom: 0.6rem;"><strong>Keep it under 15 minutes per activity.</strong> Short bursts beat long slogs.</li>
-            <li style="margin-bottom: 0.6rem;"><strong>Read aloud every single night.</strong> Non-negotiable. Highest-impact activity.</li>
-            <li style="margin-bottom: 0.6rem;"><strong>Play IS learning.</strong> LEGO, puzzles, blocks, and board games all count.</li>
-            <li style="margin-bottom: 0.6rem;"><strong>Talk to him constantly.</strong> Narrate your day, ask questions, expand vocabulary.</li>
-            <li style="margin-bottom: 0.6rem;"><strong>Be consistent, not intense.</strong> 8 hrs/week gentle practice > 3 hrs weekend cramming.</li>
-            <li style="margin-bottom: 0.6rem;"><strong>Celebrate everything.</strong> First word read? Party. Counted to 20? High five.</li>
+    <h2 class="section-title">💡 Golden Rules (Both Kids)</h2>
+    <div class="golden-rules">
+        <ol>
+            <li><strong>Never force it.</strong> If they're tired or frustrated, stop. Try again tomorrow.</li>
+            <li><strong>Keep it short.</strong> Son: 15 min/activity. Daughter: 30 min/activity. Short focused bursts beat long slogs.</li>
+            <li><strong>Read aloud every single night.</strong> Non-negotiable for son. Encourage free reading for daughter.</li>
+            <li><strong>Play IS learning.</strong> LEGO, puzzles, blocks, board games all count — for both kids.</li>
+            <li><strong>Be consistent, not intense.</strong> Daily gentle practice > weekend cramming.</li>
+            <li><strong>Celebrate everything.</strong> Every milestone matters. Praise effort, not just results.</li>
+            <li><strong>No TV on weekdays.</strong> Educational apps for son (20 min). IXL for daughter (30 min). Weekends flexible.</li>
+            <li><strong>Protect sleep.</strong> Son: 10-11 hrs. Daughter: 9.5-10 hrs. Sleep = learning consolidation.</li>
         </ol>
     </div>
 </div>
 
 <footer>
-    <p>📚 Kids Education Roadmap — NSW Selective School Preparation</p>
-    <p>Built with love for a future doctor / mathematician / technologist 🚀</p>
+    <p>📚 Kids Education Hub — Sydney NSW</p>
+    <p>Selective School Prep (Son) · NAPLAN &amp; Scholarships (Daughter) · Built with love 🚀</p>
 </footer>
 
 </body>
