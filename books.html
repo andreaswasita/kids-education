@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books & Resources — Kindy (Age 5)</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --primary-light: #2e86c1;
+            --accent: #8e44ad;
+            --green: #27ae60;
+            --orange: #e67e22;
+            --red: #c0392b;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #e0e0e0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .hero { background: linear-gradient(135deg, var(--accent) 0%, #6c3483 100%); color: white; padding: 2.5rem 2rem; text-align: center; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
+        .hero p { opacity: 0.9; }
+        nav.breadcrumb { background: var(--card-bg); padding: 0.8rem 2rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        nav.breadcrumb a { color: var(--primary-light); text-decoration: none; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+        h2 { color: var(--primary); margin: 2rem 0 0.8rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
+        h3 { color: var(--accent); margin: 1.5rem 0 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        thead th { background: var(--primary); color: white; padding: 0.8rem 1rem; text-align: left; font-size: 0.9rem; }
+        tbody td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: top; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:nth-child(even) { background: #f9f9f9; }
+        .shopping-list { background: #fff9e6; border: 2px solid #f0c040; border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; }
+        .shopping-list h3 { color: #b7950b; margin-top: 0; }
+        .checklist { list-style: none; padding: 0; }
+        .checklist li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li::before { content: "☐ "; font-size: 1.1rem; }
+        .price { color: var(--green); font-weight: 600; }
+        .tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 0.3rem; }
+        .tag.buy { background: #d4efdf; color: #1e8449; }
+        .tag.library { background: #d6eaf8; color: #1a5276; }
+        .tag.aus { background: #fdebd0; color: #d35400; }
+        .category-card { background: var(--card-bg); border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin: 1rem 0; border-left: 4px solid var(--accent); }
+        footer { text-align: center; padding: 2rem; color: var(--text-light); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.6rem; }
+            table { font-size: 0.8rem; }
+            thead th, tbody td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="breadcrumb"><a href="index.html">🏠 Home</a> &rsaquo; Books & Resources</nav>
+
+<div class="hero">
+    <h1>📖 Books & Resources</h1>
+    <p>Everything you need — workbooks, decodable readers, picture books, and a shopping list</p>
+</div>
+
+<div class="container">
+
+    <div class="shopping-list">
+        <h3>🛒 Shopping List — Get These First</h3>
+        <h4 style="margin: 1rem 0 0.5rem; color: #7d6608;">Priority 1: Buy This Week</h4>
+        <ul class="checklist">
+            <li><strong>Bob Books Set 1</strong> (12 books) <span class="price">~$20</span> — Big W, Amazon</li>
+            <li><strong>Jolly Phonics Workbook 1</strong> <span class="price">~$12</span> — Booktopia</li>
+            <li><strong>Magnetic letters</strong> <span class="price">~$15</span> — Kmart, Big W</li>
+            <li><strong>Snakes & Ladders</strong> <span class="price">~$10</span> — Kmart, Big W</li>
+        </ul>
+        <h4 style="margin: 1rem 0 0.5rem; color: #7d6608;">Priority 2: Buy Within a Month</h4>
+        <ul class="checklist">
+            <li><strong>Dandelion Readers Unit 1</strong> <span class="price">~$25</span> — phonicbooks.co.uk</li>
+            <li><strong>Kumon: My Book of Uppercase Letters</strong> <span class="price">~$10</span> — Big W</li>
+            <li><strong>The Very Hungry Caterpillar</strong> <span class="price">~$12</span> — any bookshop</li>
+            <li><strong>The Gruffalo</strong> <span class="price">~$12</span> — any bookshop</li>
+            <li><strong>100 First Words (DK)</strong> <span class="price">~$12</span> — any bookshop</li>
+        </ul>
+        <h4 style="margin: 1rem 0 0.5rem; color: #7d6608;">Priority 3: Borrow from Library This Weekend</h4>
+        <ul class="checklist">
+            <li>Possum Magic</li>
+            <li>Where the Wild Things Are</li>
+            <li>Green Eggs and Ham</li>
+            <li>National Geographic Little Kids First Big Book of Why</li>
+            <li>Mouse Shapes</li>
+            <li>Pattern Fish</li>
+        </ul>
+        <p style="margin-top: 1rem; font-weight: 600; color: #7d6608;">💰 Budget estimate: ~$80-100 to get started. Then use the library for everything else!</p>
+    </div>
+
+    <h2>📝 Workbooks (Daily Use)</h2>
+    <table>
+        <thead><tr><th>Book</th><th>Type</th><th>Used For</th><th>Where to Buy</th><th>Cost</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Jolly Phonics Workbook 1-7</strong></td><td>Phonics workbook</td><td>Mon/Wed phonics</td><td>Booktopia, Amazon</td><td>~$12 each</td></tr>
+            <tr><td><strong>Kumon: My Book of Uppercase Letters</strong></td><td>Writing workbook</td><td>Thu writing</td><td>Big W, Newsagent</td><td>~$10</td></tr>
+            <tr><td><strong>Kumon: Are You Ready for Kindergarten? Maths</strong></td><td>Maths workbook</td><td>Weekend backup</td><td>Big W, Amazon</td><td>~$10</td></tr>
+            <tr><td><strong>Excel Early Skills: English Book 1</strong></td><td>English workbook</td><td>Extra practice</td><td>Newsagent, Big W</td><td>~$8</td></tr>
+            <tr><td><strong>100 First Words (DK)</strong></td><td>Sight word reference</td><td>Wed sight words</td><td>Any bookshop</td><td>~$12</td></tr>
+        </tbody>
+    </table>
+
+    <h2>📕 Decodable Readers (Child Reads)</h2>
+    <p style="color: var(--text-light); margin-bottom: 0.5rem;">Start these once he knows ~12 letter sounds. The child reads these to you.</p>
+    <table>
+        <thead><tr><th>Series</th><th>Publisher</th><th>Used On</th><th>Notes</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Bob Books Set 1</strong> (12 books)</td><td>Scholastic</td><td>Tue/Thu reading</td><td>Very simple, great confidence builder. Start here! <span class="tag buy">BUY</span></td></tr>
+            <tr><td><strong>Dandelion Readers Units 1-3</strong></td><td>Phonic Books</td><td>Tue/Thu reading</td><td>Best systematic phonics readers available <span class="tag buy">BUY</span></td></tr>
+            <tr><td><strong>Little Learners Love Literacy</strong></td><td>LLLL</td><td>Alternate reader</td><td>Australian phonics program — excellent <span class="tag aus">AUS</span></td></tr>
+            <tr><td><strong>Jolly Phonics Readers</strong></td><td>Jolly Learning</td><td>Alternate reader</td><td>Matches Jolly Phonics workbooks</td></tr>
+            <tr><td><strong>PM Readers Level 1-3</strong></td><td>Cengage</td><td>Term 3-4</td><td>Widely used in Australian schools <span class="tag aus">AUS</span></td></tr>
+            <tr><td><strong>Oxford Reading Tree (Floppy's Phonics)</strong></td><td>Oxford</td><td>Term 4</td><td>Excellent UK-Australian standard</td></tr>
+        </tbody>
+    </table>
+
+    <h2>🌙 Bedtime Read-Aloud Books (Parent Reads)</h2>
+    <p style="color: var(--text-light); margin-bottom: 0.5rem;">Aim for books ABOVE his reading level. These build vocabulary, comprehension, and love of stories.</p>
+
+    <h3>🦘 Australian Favourites</h3>
+    <table>
+        <thead><tr><th>Title</th><th>Author</th><th>Why It's Great</th><th>Get It</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Possum Magic</strong></td><td>Mem Fox</td><td>Beautiful language, Australian animals, magic</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Wombat Stew</strong></td><td>Marcia Vaughan</td><td>Humour, cumulative story, Aussie bush</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Diary of a Wombat</strong></td><td>Jackie French</td><td>Hilarious, short chapters, Australian animals</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Are We There Yet?</strong></td><td>Alison Lester</td><td>Australia road trip, geography, family</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>The Magic Hat</strong></td><td>Mem Fox</td><td>Rhyme, surprise, community</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Snugglepot and Cuddlepie</strong></td><td>May Gibbs</td><td>Classic Australian, magical bush babies</td><td><span class="tag library">LIBRARY</span></td></tr>
+        </tbody>
+    </table>
+
+    <h3>🌍 International Classics</h3>
+    <table>
+        <thead><tr><th>Title</th><th>Author</th><th>Why It's Great</th><th>Get It</th></tr></thead>
+        <tbody>
+            <tr><td><strong>The Gruffalo</strong></td><td>Julia Donaldson</td><td>Perfect rhyme, prediction, clever narrative</td><td><span class="tag buy">BUY</span></td></tr>
+            <tr><td><strong>Where the Wild Things Are</strong></td><td>Maurice Sendak</td><td>Imagination, rich vocabulary, emotions</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Green Eggs and Ham</strong></td><td>Dr. Seuss</td><td>Rhyme, repetition, phonics patterns</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>The Very Hungry Caterpillar</strong></td><td>Eric Carle</td><td>Counting, days of week, sequencing</td><td><span class="tag buy">BUY</span></td></tr>
+            <tr><td><strong>Each Peach Pear Plum</strong></td><td>Janet &amp; Allan Ahlberg</td><td>Rhyme, visual searching, I-spy game</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Harold and the Purple Crayon</strong></td><td>Crockett Johnson</td><td>Imagination, problem-solving, creativity</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Rosie's Walk</strong></td><td>Pat Hutchins</td><td>Positional language (over, under, through)</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Goodnight Moon</strong></td><td>Margaret Wise Brown</td><td>Calm, rhythmic, perfect for bedtime</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Owl Babies</strong></td><td>Martin Waddell</td><td>Reassurance, emotions, beautiful illustrations</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>We're Going on a Bear Hunt</strong></td><td>Michael Rosen</td><td>Action, sound words, repetition, adventure</td><td><span class="tag library">LIBRARY</span></td></tr>
+        </tbody>
+    </table>
+
+    <h3>🔬 Non-Fiction for Curious Minds</h3>
+    <table>
+        <thead><tr><th>Title</th><th>Author</th><th>Why It's Great</th><th>Get It</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Nat Geo Little Kids First Big Book of Why</strong></td><td>Amy Shields</td><td>Answers all the "why?" questions</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Nat Geo Little Kids First Big Book of Space</strong></td><td>Catherine Hughes</td><td>Space, planets — great for science kids</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Nat Geo Little Kids First Big Book of Animals</strong></td><td>Catherine Hughes</td><td>Animals, habitats, facts</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>The Human Body (DK My First)</strong></td><td>DK</td><td>For future doctors! Body, bones, organs</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Ada Twist, Scientist</strong></td><td>Andrea Beaty</td><td>Science mindset, curiosity</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Rosie Revere, Engineer</strong></td><td>Andrea Beaty</td><td>Growth mindset, persistence, STEM</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Iggy Peck, Architect</strong></td><td>Andrea Beaty</td><td>Building, creativity, STEM career</td><td><span class="tag library">LIBRARY</span></td></tr>
+        </tbody>
+    </table>
+
+    <h3>🔢 Maths Picture Books</h3>
+    <table>
+        <thead><tr><th>Title</th><th>Author</th><th>Maths Concept</th><th>Get It</th></tr></thead>
+        <tbody>
+            <tr><td><strong>The Very Hungry Caterpillar</strong></td><td>Eric Carle</td><td>Counting 1-5, days of week</td><td><span class="tag buy">BUY</span></td></tr>
+            <tr><td><strong>Mouse Shapes</strong></td><td>Ellen Stoll Walsh</td><td>2D shapes, combining shapes</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Pattern Fish</strong></td><td>Trudy Harris</td><td>Patterns (AB, ABB, ABC)</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Pete the Cat: Missing Cupcakes</strong></td><td>James Dean</td><td>Subtraction, counting back</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>Ten Black Dots</strong></td><td>Donald Crews</td><td>Counting, creativity with numbers</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>How Many Snails?</strong></td><td>Paul Giganti Jr.</td><td>Counting, sorting, comparing</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>One Is a Snail, Ten Is a Crab</strong></td><td>April Pulley Sayre</td><td>Counting by groups, addition</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>12 Ways to Get to 11</strong></td><td>Eve Merriam</td><td>Number bonds, different ways to make 11</td><td><span class="tag library">LIBRARY</span></td></tr>
+            <tr><td><strong>The Doorbell Rang</strong></td><td>Pat Hutchins</td><td>Division, sharing equally</td><td><span class="tag library">LIBRARY</span></td></tr>
+        </tbody>
+    </table>
+
+</div>
+
+<footer>
+    <p>📚 Kids Education Roadmap — NSW Selective School Preparation</p>
+    <p><a href="index.html" style="color: var(--primary-light);">← Back to Home</a> · <a href="schedule.html" style="color: var(--primary-light);">📅 Daily Schedule</a></p>
+</footer>
+
+</body>
+</html>
