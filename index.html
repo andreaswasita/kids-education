@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Education — Selective School Roadmap</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --primary-light: #2e86c1;
+            --accent: #e67e22;
+            --green: #27ae60;
+            --purple: #8e44ad;
+            --red: #c0392b;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #e0e0e0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .hero .subtitle { font-size: 1rem; opacity: 0.7; margin-top: 0.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: -2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .nav-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            border-left: 4px solid var(--primary-light);
+        }
+        .nav-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .nav-card .icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+        .nav-card h3 { color: var(--primary); font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .nav-card p { color: var(--text-light); font-size: 0.9rem; }
+        .nav-card.schedule { border-left-color: var(--accent); }
+        .nav-card.phase { border-left-color: var(--green); }
+        .nav-card.resource { border-left-color: var(--purple); }
+        .nav-card.tracking { border-left-color: var(--red); }
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.2rem;
+        }
+        .phase-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--green);
+        }
+        .phase-card h4 { color: var(--primary); margin-bottom: 0.3rem; }
+        .phase-card .age { color: var(--accent); font-weight: 600; font-size: 0.85rem; }
+        .phase-card ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+        .phase-card li { font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.2rem; }
+        .quick-info {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .quick-info h3 { color: var(--primary); margin-bottom: 0.8rem; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .info-item { text-align: center; }
+        .info-item .number { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+        .info-item .label { font-size: 0.85rem; color: var(--text); }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>📚 Kids Education Roadmap</h1>
+    <p>NSW Selective School Preparation — From Kindy to Year 6</p>
+    <div class="subtitle">Evidence-based, parent-friendly, fun-first approach</div>
+</div>
+
+<div class="container">
+    <div class="nav-cards">
+        <a href="schedule.html" class="nav-card schedule">
+            <div class="icon">📅</div>
+            <h3>Daily Schedule</h3>
+            <p>Detailed day-by-day plan — weekday routine, weekend activities, app rotation, book assignments</p>
+        </a>
+        <a href="books.html" class="nav-card resource">
+            <div class="icon">📖</div>
+            <h3>Books & Resources</h3>
+            <p>40+ recommended books, decodable readers, workbooks, maths picture books + shopping list</p>
+        </a>
+        <a href="apps.html" class="nav-card schedule">
+            <div class="icon">📱</div>
+            <h3>Apps & Digital</h3>
+            <p>Khan Academy Kids, IXL, Duolingo — how to use each, daily rotation plan</p>
+        </a>
+        <a href="tracker.html" class="nav-card tracking">
+            <div class="icon">📊</div>
+            <h3>Progress Tracker</h3>
+            <p>Milestone checklists, term targets, skills tracker — tick off as you go</p>
+        </a>
+    </div>
+
+    <div class="quick-info">
+        <h3>⏰ At a Glance — Your Daily Routine</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="number">3:30</div>
+                <div class="label">Child arrives home</div>
+            </div>
+            <div class="info-item">
+                <div class="number">6:00</div>
+                <div class="label">Parents arrive home</div>
+            </div>
+            <div class="info-item">
+                <div class="number">40m</div>
+                <div class="label">Structured learning/day</div>
+            </div>
+            <div class="info-item">
+                <div class="number">9:00</div>
+                <div class="label">Lights out</div>
+            </div>
+            <div class="info-item">
+                <div class="number">~8h</div>
+                <div class="label">Total per week</div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">🗺️ The Roadmap — 7 Year Journey</h2>
+    <div class="phase-grid">
+        <div class="phase-card" style="border-top-color: #e74c3c;">
+            <h4>Phase 1: Kindy</h4>
+            <div class="age">Age 5 — CURRENT</div>
+            <ul>
+                <li>Learn all letter sounds (phonics)</li>
+                <li>Blend CVC words (cat, dog, sit)</li>
+                <li>Count to 100</li>
+                <li>Build love of reading</li>
+            </ul>
+        </div>
+        <div class="phase-card" style="border-top-color: #e67e22;">
+            <h4>Phase 2: Year 1</h4>
+            <div class="age">Age 6</div>
+            <ul>
+                <li>Reading fluency</li>
+                <li>Number facts to 20</li>
+                <li>Chapter books begin</li>
+                <li>Coding intro (Scratch Jr.)</li>
+            </ul>
+        </div>
+        <div class="phase-card" style="border-top-color: #f1c40f;">
+            <h4>Phase 3: Year 2</h4>
+            <div class="age">Age 7</div>
+            <ul>
+                <li>Times tables mastery</li>
+                <li>Comprehension strategies</li>
+                <li>Chapter book explosion</li>
+                <li>Pattern recognition</li>
+            </ul>
+        </div>
+        <div class="phase-card" style="border-top-color: #27ae60;">
+            <h4>Phase 4: Year 3</h4>
+            <div class="age">Age 8 — NAPLAN + OC Prep Begins</div>
+            <ul>
+                <li>NAPLAN Year 3</li>
+                <li>OC test prep starts</li>
+                <li>70% skills / 20% format / 10% test-taking</li>
+                <li>Tutoring analysis</li>
+            </ul>
+        </div>
+        <div class="phase-card" style="border-top-color: #2e86c1;">
+            <h4>Phase 5: Year 4</h4>
+            <div class="age">Age 9 — OC TEST YEAR</div>
+            <ul>
+                <li>OC test (March)</li>
+                <li>Month-by-month prep</li>
+                <li>Practice tests weekly</li>
+                <li>Anxiety management</li>
+            </ul>
+        </div>
+        <div class="phase-card" style="border-top-color: #8e44ad;">
+            <h4>Phase 6: Years 5-6</h4>
+            <div class="age">Ages 10-12 — SELECTIVE TEST</div>
+            <ul>
+                <li>Selective High School prep</li>
+                <li>Writing component (PEEL)</li>
+                <li>School preferences</li>
+                <li>Interview skills</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-title">💡 Golden Rules</h2>
+    <div style="background: var(--card-bg); border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <ol style="padding-left: 1.5rem;">
+            <li style="margin-bottom: 0.6rem;"><strong>Never force it.</strong> If he's tired or frustrated, stop. Try again tomorrow.</li>
+            <li style="margin-bottom: 0.6rem;"><strong>Keep it under 15 minutes per activity.</strong> Short bursts beat long slogs.</li>
+            <li style="margin-bottom: 0.6rem;"><strong>Read aloud every single night.</strong> Non-negotiable. Highest-impact activity.</li>
+            <li style="margin-bottom: 0.6rem;"><strong>Play IS learning.</strong> LEGO, puzzles, blocks, and board games all count.</li>
+            <li style="margin-bottom: 0.6rem;"><strong>Talk to him constantly.</strong> Narrate your day, ask questions, expand vocabulary.</li>
+            <li style="margin-bottom: 0.6rem;"><strong>Be consistent, not intense.</strong> 8 hrs/week gentle practice > 3 hrs weekend cramming.</li>
+            <li style="margin-bottom: 0.6rem;"><strong>Celebrate everything.</strong> First word read? Party. Counted to 20? High five.</li>
+        </ol>
+    </div>
+</div>
+
+<footer>
+    <p>📚 Kids Education Roadmap — NSW Selective School Preparation</p>
+    <p>Built with love for a future doctor / mathematician / technologist 🚀</p>
+</footer>
+
+</body>
+</html>
