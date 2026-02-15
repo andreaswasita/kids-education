@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year 5 — NAPLAN &amp; Scholarship Prep</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --primary-light: #2e86c1;
+            --accent: #e67e22;
+            --green: #27ae60;
+            --purple: #8e44ad;
+            --red: #c0392b;
+            --pink: #e91e8c;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #e0e0e0;
+            --yellow-bg: #fff9e6;
+            --green-bg: #eafaf1;
+            --orange-bg: #fef5e7;
+            --blue-bg: #eaf2f8;
+            --purple-bg: #f4ecf7;
+            --pink-bg: #fce4ec;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .hero {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+            color: white; padding: 2.5rem 2rem; text-align: center;
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
+        .hero .meta { font-size: 1rem; opacity: 0.9; }
+        .hero .times { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+        .hero .time-pill { background: rgba(255,255,255,0.2); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; }
+        nav.breadcrumb { background: var(--card-bg); padding: 0.8rem 2rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        nav.breadcrumb a { color: var(--primary-light); text-decoration: none; }
+        nav.breadcrumb a:hover { text-decoration: underline; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; border-bottom: 2px solid var(--border); padding-bottom: 0; }
+        .tab { padding: 0.7rem 1.2rem; border: none; background: transparent; cursor: pointer; font-size: 0.95rem; font-weight: 600; color: var(--text-light); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab:hover { color: var(--primary); }
+        .tab.active { color: var(--purple); border-bottom-color: var(--pink); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        thead th { background: var(--purple); color: white; padding: 0.8rem 1rem; text-align: left; font-size: 0.9rem; }
+        tbody td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: top; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:nth-child(even) { background: #f9f9f9; }
+        .highlight-row { background: var(--pink-bg) !important; font-weight: 600; }
+        .section-header { padding: 0.8rem 1.2rem; border-radius: 8px; margin: 1.5rem 0 0.5rem; font-weight: 700; font-size: 1rem; }
+        .section-header.purple { background: var(--purple-bg); color: var(--purple); border-left: 4px solid var(--purple); }
+        .section-header.pink { background: var(--pink-bg); color: #c2185b; border-left: 4px solid var(--pink); }
+        .section-header.green { background: var(--green-bg); color: #1e8449; border-left: 4px solid var(--green); }
+        .section-header.blue { background: var(--blue-bg); color: var(--primary); border-left: 4px solid var(--primary-light); }
+        .section-header.orange { background: var(--orange-bg); color: #d35400; border-left: 4px solid var(--accent); }
+        .info-box { background: #f4ecf7; border-left: 4px solid var(--purple); border-radius: 8px; padding: 0.8rem 1.2rem; margin: 0.8rem 0; font-size: 0.9rem; }
+        .info-box.warning { background: #fdf2e9; border-left-color: var(--accent); }
+        .info-box.danger { background: #fdedec; border-left-color: var(--red); }
+        .info-box.success { background: var(--green-bg); border-left-color: var(--green); }
+        .day-card { background: var(--card-bg); border-radius: 10px; margin: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.06); overflow: hidden; }
+        .day-card .day-header { color: white; padding: 0.8rem 1.2rem; font-weight: 700; font-size: 1rem; }
+        .day-card.monday .day-header { background: #2e86c1; }
+        .day-card.tuesday .day-header { background: #27ae60; }
+        .day-card.wednesday .day-header { background: #e67e22; }
+        .day-card.thursday .day-header { background: #8e44ad; }
+        .day-card.friday .day-header { background: #b7950b; }
+        .day-card.saturday .day-header { background: #c0392b; }
+        .day-card.sunday .day-header { background: #2e86c1; }
+        .day-card .day-body { padding: 0; }
+        .day-note { background: #fef9e7; padding: 0.6rem 1rem; font-size: 0.85rem; color: #7d6608; border-bottom: 1px solid var(--border); }
+        .summary-card { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 10px; padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-weight: 600; text-align: center; font-size: 0.95rem; color: var(--text); }
+        .strength-card { display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .strength-item { flex: 1; min-width: 200px; background: var(--card-bg); border-radius: 10px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
+        .strength-item .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .strength-item .label { font-weight: 700; color: var(--primary); }
+        .strength-item .level { font-size: 0.85rem; margin-top: 0.3rem; }
+        .strength-item .level.strong { color: var(--green); }
+        .strength-item .level.weak { color: var(--red); }
+        .bar-container { background: #eee; border-radius: 10px; height: 10px; margin-top: 0.5rem; }
+        .bar-fill { height: 100%; border-radius: 10px; }
+        .bar-fill.green { background: var(--green); }
+        .bar-fill.orange { background: var(--accent); }
+        .bar-fill.red { background: var(--red); }
+        .naplan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; margin: 1.5rem 0; }
+        .naplan-card { background: var(--card-bg); border-radius: 10px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .naplan-card h4 { color: var(--purple); margin-bottom: 0.5rem; }
+        .naplan-card .status { display: inline-block; padding: 0.2rem 0.8rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .naplan-card .status.strong { background: #d5f5e3; color: #1e8449; }
+        .naplan-card .status.needs-work { background: #fdedec; color: var(--red); }
+        .naplan-card ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+        .naplan-card li { font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.2rem; }
+        .fridge-card { background: var(--card-bg); border: 3px dashed var(--purple); border-radius: 12px; padding: 2rem; margin: 1.5rem 0; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; max-width: 520px; }
+        .fridge-card h3 { font-family: 'Segoe UI', sans-serif; text-align: center; margin-bottom: 1rem; color: var(--purple); }
+        .print-btn { display: inline-block; background: var(--purple); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; margin: 1rem 0; }
+        .print-btn:hover { background: #7b2f8e; }
+        .countdown { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; border-radius: 12px; padding: 1.5rem 2rem; text-align: center; margin: 1.5rem 0; }
+        .countdown h3 { margin-bottom: 0.5rem; font-size: 1.3rem; }
+        .countdown .days { font-size: 3rem; font-weight: 900; }
+        .countdown .sublabel { opacity: 0.8; font-size: 0.9rem; }
+        .week-plan { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+        .week-plan .wp-item { background: var(--card-bg); border-radius: 8px; padding: 0.8rem; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.04); border-top: 3px solid var(--purple); }
+        .week-plan .wp-item .wp-day { font-weight: 700; color: var(--purple); font-size: 0.85rem; }
+        .week-plan .wp-item .wp-focus { font-size: 0.8rem; color: var(--text-light); margin-top: 0.3rem; }
+        footer { text-align: center; padding: 2rem; color: var(--text-light); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        @media print { .hero, nav, .tabs, footer, .print-btn, .no-print { display: none; } .tab-content { display: block !important; } .fridge-card { border: 2px solid #333; page-break-inside: avoid; } }
+        @media (max-width: 600px) { .hero h1 { font-size: 1.6rem; } .hero .times { gap: 0.5rem; } .tab { padding: 0.5rem 0.7rem; font-size: 0.8rem; } table { font-size: 0.8rem; } thead th, tbody td { padding: 0.5rem; } }
+    </style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+    <a href="index.html">🏠 Home</a> &rsaquo; <a href="family-calendar.html">👨‍👩‍👧‍👦 Family</a> &rsaquo; Daughter — Year 5
+</nav>
+
+<div class="hero">
+    <h1>📝 Year 5 — NAPLAN &amp; Scholarship Prep</h1>
+    <div class="meta">Sydney NSW · Private School Scholarship + NAPLAN · Maths-focused improvement plan</div>
+    <div class="times">
+        <span class="time-pill">📖 Strong: Reading &amp; Grammar</span>
+        <span class="time-pill">🔢 Focus: Maths (needs boost)</span>
+        <span class="time-pill">🎹 Piano Tue · 🎻 Cello Thu</span>
+        <span class="time-pill">🇨🇳 Mandarin Wed · 🏊 Swim Fri</span>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="strength-card">
+        <div class="strength-item">
+            <div class="icon">📖</div>
+            <div class="label">Reading</div>
+            <div class="level strong">Strong</div>
+            <div class="bar-container"><div class="bar-fill green" style="width: 85%"></div></div>
+        </div>
+        <div class="strength-item">
+            <div class="icon">✏️</div>
+            <div class="label">Grammar</div>
+            <div class="level strong">Strong</div>
+            <div class="bar-container"><div class="bar-fill green" style="width: 80%"></div></div>
+        </div>
+        <div class="strength-item">
+            <div class="icon">📝</div>
+            <div class="label">Writing</div>
+            <div class="level" style="color: var(--accent);">Good — Build</div>
+            <div class="bar-container"><div class="bar-fill orange" style="width: 65%"></div></div>
+        </div>
+        <div class="strength-item">
+            <div class="icon">🔢</div>
+            <div class="label">Maths</div>
+            <div class="level weak">Needs Focus</div>
+            <div class="bar-container"><div class="bar-fill red" style="width: 40%"></div></div>
+        </div>
+        <div class="strength-item">
+            <div class="icon">🧠</div>
+            <div class="label">General Ability</div>
+            <div class="level" style="color: var(--accent);">Build for Scholarship</div>
+            <div class="bar-container"><div class="bar-fill orange" style="width: 50%"></div></div>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('schedule')">📅 Schedule</button>
+        <button class="tab" onclick="showTab('daily')">📋 Daily Plan</button>
+        <button class="tab" onclick="showTab('naplan')">📝 NAPLAN</button>
+        <button class="tab" onclick="showTab('scholarship')">🏫 Scholarship</button>
+        <button class="tab" onclick="showTab('maths')">🔢 Maths Boost</button>
+        <button class="tab" onclick="showTab('resources')">📚 Resources</button>
+        <button class="tab" onclick="showTab('fridge')">🖨️ Print</button>
+    </div>
+
+    <!-- ===================== SCHEDULE TAB ===================== -->
+    <div id="schedule" class="tab-content active">
+        <div class="info-box">
+            🎯 <strong>Strategy:</strong> She's strong in reading &amp; grammar, so most study time goes to <strong>maths</strong> (daily IXL + workbook).
+            Reading/writing prep is lighter — maintain strength, build exam technique.
+        </div>
+        <div class="info-box warning">
+            ⚠️ <strong>Busy week!</strong> Piano Tue 6pm · Mandarin Wed 4:20pm · Cello Thu 6:30pm · Swimming Fri 5:30pm · Church Sun 9am.
+            See <strong>Daily Plan</strong> tab for full details per day.
+        </div>
+
+        <div class="section-header purple">📅 Weekly Overview — At a Glance</div>
+        <div class="week-plan">
+            <div class="wp-item"><div class="wp-day">MON</div><div class="wp-focus">📐 Maths Focus<br>Workbook + IXL</div></div>
+            <div class="wp-item" style="border-top-color: var(--green);"><div class="wp-day">TUE</div><div class="wp-focus">🎹 Piano 6pm<br>Reading comp</div></div>
+            <div class="wp-item" style="border-top-color: var(--accent);"><div class="wp-day">WED</div><div class="wp-focus">🇨🇳 Mandarin 4:20<br>Writing + Maths</div></div>
+            <div class="wp-item" style="border-top-color: var(--pink);"><div class="wp-day">THU</div><div class="wp-focus">🎻 Cello 6:30<br>Gen Ability</div></div>
+            <div class="wp-item" style="border-top-color: #b7950b;"><div class="wp-day">FRI</div><div class="wp-focus">🏊 Swim 5:30<br>Light / Fun</div></div>
+            <div class="wp-item" style="border-top-color: var(--red);"><div class="wp-day">SAT</div><div class="wp-focus">📝 Practice Test<br>Mock Exam</div></div>
+            <div class="wp-item" style="border-top-color: #2e86c1;"><div class="wp-day">SUN</div><div class="wp-focus">⛪ Church 9am<br>Rest + Review</div></div>
+        </div>
+
+        <div class="section-header pink">⏰ Standard Weekday Template (Mon)</div>
+        <table>
+            <thead><tr><th>Time</th><th>Activity</th><th>Duration</th><th>Details</th></tr></thead>
+            <tbody>
+                <tr><td>3:30–4:00</td><td>🍎 Snack + decompress</td><td>30 min</td><td>After school wind down. Eat, chat with carer.</td></tr>
+                <tr><td>4:00–4:30</td><td>📝 Homework</td><td>30 min</td><td>School homework first — get it done.</td></tr>
+                <tr class="highlight-row"><td>4:30–5:00</td><td>📱 IXL Maths — Year 5</td><td>30 min</td><td>Daily maths practice. Focus on weak topics (see Maths Boost tab).</td></tr>
+                <tr><td>5:00–5:20</td><td>🎵 Music practice</td><td>20 min</td><td>Piano or cello — alternate days. 10 min scales + 10 min piece.</td></tr>
+                <tr><td>5:20–6:00</td><td>🎧 Free time / play</td><td>40 min</td><td>Relax, read for pleasure, draw, play outside.</td></tr>
+                <tr><td>6:00–6:30</td><td>🍽️ Dinner together</td><td>30 min</td><td>Family conversation — "What did you learn today?"</td></tr>
+                <tr class="highlight-row"><td>6:30–7:00</td><td>📐 Study block</td><td>30 min</td><td>Maths workbook (Mon), Reading comp (Tue), Writing (Wed), GA (Thu)</td></tr>
+                <tr><td>7:00–8:00</td><td>📖 Free time / reading</td><td>60 min</td><td>Reading for pleasure, creative time, family time.</td></tr>
+                <tr><td>8:00–8:30</td><td>🛁 Get ready for bed</td><td>30 min</td><td>Shower, pack bag for tomorrow.</td></tr>
+                <tr><td>8:30–9:00</td><td>📖 Reading in bed</td><td>30 min</td><td>Free reading — any book she loves.</td></tr>
+                <tr><td>9:00–9:30</td><td>💤 Lights out</td><td>—</td><td>Target: 9.5–10 hrs sleep.</td></tr>
+            </tbody>
+        </table>
+        <div class="summary-card">
+            📊 Daily structured study: ~1h 30m (homework 30m + IXL 30m + study block 30m) + 20m music practice. Weekdays only ~2 hrs total. The rest is free time!
+        </div>
+    </div>
+
+    <!-- ===================== DAILY PLAN TAB ===================== -->
+    <div id="daily" class="tab-content">
+        <p style="margin-bottom: 1rem; color: var(--text-light);">Each day has a specific study focus. Tuesday, Wednesday, Thursday, and Friday have special schedules due to activities.</p>
+
+        <div class="day-card monday">
+            <div class="day-header">Monday — Maths Focus Day 📐</div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>3:30–4:00</td><td>🍎 Snack + decompress</td><td>Wind down from school</td></tr>
+                        <tr><td>4:00–4:30</td><td>📝 Homework</td><td>Finish all school homework</td></tr>
+                        <tr class="highlight-row"><td>4:30–5:00</td><td>📱 IXL Maths Year 5</td><td>Focus: Fractions &amp; decimals, multiplication, word problems</td></tr>
+                        <tr><td>5:00–5:20</td><td>🎹 Piano practice</td><td>Scales (10 min) + current piece (10 min)</td></tr>
+                        <tr><td>5:20–6:00</td><td>Free time</td><td>Play, read, draw, go outside</td></tr>
+                        <tr><td>6:00–6:30</td><td>🍽️ Dinner</td><td>Family dinner together</td></tr>
+                        <tr class="highlight-row"><td>6:30–7:00</td><td>📐 Maths workbook</td><td><strong>Excel Mental Maths Year 5</strong> — 2 pages. Focus on problem-solving.</td></tr>
+                        <tr><td>7:00–8:00</td><td>Free time / reading</td><td>Read for pleasure, board game, creative time</td></tr>
+                        <tr><td>8:00–8:30</td><td>Get ready for bed</td><td>Shower, pack bag</td></tr>
+                        <tr><td>8:30–9:00</td><td>📖 Reading in bed</td><td>Any book she chooses</td></tr>
+                        <tr><td>9:00–9:30</td><td>💤 Lights out</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card tuesday">
+            <div class="day-header">Tuesday — Piano Day 🎹</div>
+            <div class="day-note">
+                🎹 <strong>Piano lesson at 6:00 PM</strong> — Dad takes her.<br>
+                🥋 <strong>Brother at BJJ 4:00–4:45</strong> — Mum with son, Dad with daughter in evening.
+            </div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>3:30–4:00</td><td>🍎 Snack</td><td>Wind down from school</td></tr>
+                        <tr><td>4:00–4:30</td><td>📝 Homework</td><td>Finish all school homework</td></tr>
+                        <tr class="highlight-row"><td>4:30–5:00</td><td>📱 IXL Maths Year 5</td><td>Daily maths practice — 30 min</td></tr>
+                        <tr><td>5:00–5:30</td><td>🎹 Piano warm-up</td><td>Practice before lesson — run through pieces</td></tr>
+                        <tr><td>5:30–5:50</td><td>Free time / get ready</td><td>Prepare for piano lesson, travel</td></tr>
+                        <tr class="highlight-row"><td>6:00–6:45</td><td>🎹 Piano Lesson</td><td>Dad takes her. Brother does IXL at home.</td></tr>
+                        <tr><td>6:45–7:15</td><td>🍽️ Dinner</td><td>Dinner together after piano</td></tr>
+                        <tr class="highlight-row"><td>7:15–7:45</td><td>📖 Reading comprehension</td><td><strong>NAPLAN-style reading passages</strong> — practice inference &amp; analysis questions</td></tr>
+                        <tr><td>7:45–8:30</td><td>Free time / reading</td><td>Leisure reading, creative time</td></tr>
+                        <tr><td>8:30–9:00</td><td>Wind down</td><td>Get ready for bed</td></tr>
+                        <tr><td>9:00–9:30</td><td>💤 Lights out</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card wednesday">
+            <div class="day-header">Wednesday — Mandarin Day 🇨🇳</div>
+            <div class="day-note">
+                🇨🇳 <strong>Mandarin class at 4:20 PM</strong> — carer takes her.<br>
+                🇨🇳 <strong>Brother also has Mandarin at 8:00 PM</strong> — parent takes him in the evening.
+            </div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>3:30–4:00</td><td>🍎 Snack + get ready</td><td>Quick snack, pack Mandarin bag</td></tr>
+                        <tr class="highlight-row"><td>4:20–5:10</td><td>🇨🇳 Mandarin Class</td><td>Mandarin lesson — language &amp; culture</td></tr>
+                        <tr><td>5:10–5:30</td><td>📝 Homework</td><td>Start homework after Mandarin</td></tr>
+                        <tr><td>5:30–5:50</td><td>🎻 Cello practice</td><td>Cello practice (20 min) — before dinner</td></tr>
+                        <tr><td>5:50–6:00</td><td>Free time</td><td>Quick break before dinner</td></tr>
+                        <tr><td>6:00–6:30</td><td>🍽️ Dinner</td><td>Family dinner together</td></tr>
+                        <tr class="highlight-row"><td>6:30–7:00</td><td>📝 Writing practice</td><td><strong>NAPLAN writing</strong> — persuasive paragraph OR narrative opening (timed 25 min)</td></tr>
+                        <tr class="highlight-row"><td>7:00–7:30</td><td>📱 IXL Maths Year 5</td><td>Daily maths — 30 min (moved from afternoon due to Mandarin)</td></tr>
+                        <tr><td>7:30–8:00</td><td>Free time / reading</td><td>Reading for pleasure</td></tr>
+                        <tr><td>8:00–8:30</td><td>Get ready for bed</td><td>Shower, pack bag</td></tr>
+                        <tr><td>8:30–9:00</td><td>📖 Reading in bed</td><td>Free reading</td></tr>
+                        <tr><td>9:00–9:30</td><td>💤 Lights out</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card thursday">
+            <div class="day-header">Thursday — Cello Day 🎻 + General Ability</div>
+            <div class="day-note">
+                🎻 <strong>Cello lesson at 6:30 PM</strong> — Dad takes her.<br>
+                📝 <strong>Brother does independent workbook</strong> while Dad is at cello.
+            </div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>3:30–4:00</td><td>🍎 Snack</td><td>Wind down from school</td></tr>
+                        <tr><td>4:00–4:30</td><td>📝 Homework</td><td>Finish school homework</td></tr>
+                        <tr class="highlight-row"><td>4:30–5:00</td><td>📱 IXL Maths Year 5</td><td>Daily maths practice — 30 min</td></tr>
+                        <tr class="highlight-row"><td>5:00–5:30</td><td>🧠 General Ability practice</td><td><strong>Scholarship prep:</strong> Verbal reasoning, numerical reasoning, abstract patterns</td></tr>
+                        <tr><td>5:30–6:00</td><td>🎻 Cello practice + get ready</td><td>Warm up before lesson, travel prep</td></tr>
+                        <tr><td>6:00–6:30</td><td>🍽️ Dinner</td><td>Quick dinner before cello</td></tr>
+                        <tr class="highlight-row"><td>6:30–7:15</td><td>🎻 Cello Lesson</td><td>Dad takes her. Brother does workbook independently.</td></tr>
+                        <tr><td>7:15–7:45</td><td>Light study / homework</td><td>Finish any remaining homework or light reading</td></tr>
+                        <tr><td>7:45–8:30</td><td>Free time / reading</td><td>Leisure time, creative activities</td></tr>
+                        <tr><td>8:30–9:00</td><td>Wind down</td><td>Get ready for bed</td></tr>
+                        <tr><td>9:00–9:30</td><td>💤 Lights out</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card friday">
+            <div class="day-header">Friday — Swimming Day 🏊 (Lighter)</div>
+            <div class="day-note">
+                🏊 <strong>Swimming at 5:30 PM</strong> — both kids together. Carer takes them. Friday is a lighter study day.
+            </div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>3:30–4:00</td><td>🍎 Snack</td><td>Wind down from school</td></tr>
+                        <tr><td>4:00–4:30</td><td>📝 Homework</td><td>Finish school homework</td></tr>
+                        <tr><td>4:30–5:00</td><td>📖 Light reading / free study</td><td>Read for pleasure, finish any leftover work from the week</td></tr>
+                        <tr><td>5:00–5:15</td><td>🏊 Get ready for swimming</td><td>Pack swim bag, get changed</td></tr>
+                        <tr class="highlight-row"><td>5:30–6:15</td><td>🏊 Swimming class</td><td>With brother — fitness, fun, water safety</td></tr>
+                        <tr><td>6:15–6:30</td><td>Travel home, change</td><td>Already clean from pool</td></tr>
+                        <tr><td>6:30–7:00</td><td>🍽️ Dinner</td><td>Family dinner — celebrate the week!</td></tr>
+                        <tr><td>7:00–8:30</td><td>🎬 Free time / movie night</td><td>Relax! Reading, games, family movie if desired</td></tr>
+                        <tr><td>8:30–9:00</td><td>Wind down</td><td>Get ready for bed</td></tr>
+                        <tr><td>9:00–9:30</td><td>💤 Lights out</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card saturday">
+            <div class="day-header">Saturday — Practice Test Day 📝</div>
+            <div class="day-note">
+                📝 <strong>Weekly timed practice test in the morning</strong> — alternating NAPLAN format and scholarship format.<br>
+                🥋 <strong>Brother's BJJ at 8:30 PM</strong> — one parent with brother, other with daughter.
+            </div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>8:00–8:30</td><td>🥣 Breakfast</td><td>Good breakfast before practice test</td></tr>
+                        <tr class="highlight-row"><td>9:00–10:00</td><td>📝 Timed practice test</td><td><strong>Week 1:</strong> NAPLAN numeracy. <strong>Week 2:</strong> Scholarship maths + GA. Alternate weekly.</td></tr>
+                        <tr class="highlight-row"><td>10:00–10:30</td><td>📋 Review mistakes</td><td>Go through wrong answers with parent. Understand WHY. Note weak topics.</td></tr>
+                        <tr><td>10:30–12:00</td><td>Free time / activities</td><td>Library, sport, playdates, creative activities</td></tr>
+                        <tr><td>12:00–12:30</td><td>Lunch</td><td></td></tr>
+                        <tr><td>1:00–5:00</td><td>Free afternoon</td><td>Playdates, outdoor activities, family time. No study!</td></tr>
+                        <tr><td>5:00–5:30</td><td>🎵 Music practice</td><td>Piano (15 min) + Cello (15 min)</td></tr>
+                        <tr><td>6:00–6:30</td><td>🍽️ Dinner</td><td></td></tr>
+                        <tr><td>7:00–8:30</td><td>Free time / family</td><td>Board games, reading, family time</td></tr>
+                        <tr><td>9:00–9:30</td><td>💤 Lights out</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="day-card sunday">
+            <div class="day-header">Sunday — Church + Rest ⛪</div>
+            <div class="day-note">
+                ⛪ <strong>Church at 9:00 AM</strong> — whole family. Rest of the day is relaxed family time.
+            </div>
+            <div class="day-body">
+                <table>
+                    <thead><tr><th>Time</th><th>Activity</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>8:00–8:30</td><td>🥣 Breakfast</td><td>Get ready for church</td></tr>
+                        <tr class="highlight-row"><td>9:00–10:30</td><td>⛪ Church</td><td>Family church service</td></tr>
+                        <tr><td>10:30–11:00</td><td>Home, change</td><td>Snack, relax after church</td></tr>
+                        <tr><td>11:00–11:30</td><td>📋 Light review (optional)</td><td>Review Saturday's practice test mistakes (15-30 min max). Or skip — it's rest day.</td></tr>
+                        <tr><td>11:30–12:30</td><td>Free time / lunch</td><td></td></tr>
+                        <tr><td>Afternoon</td><td>Family time</td><td>Park, beach, bushwalk, market — no study!</td></tr>
+                        <tr><td>5:00–5:20</td><td>🎵 Music practice</td><td>Quick 20 min practice (optional)</td></tr>
+                        <tr><td>6:00–6:30</td><td>🍽️ Dinner</td><td></td></tr>
+                        <tr><td>7:00–7:30</td><td>📋 Plan next week</td><td>Check homework diary, pack bag, set out uniform.</td></tr>
+                        <tr><td>7:30–8:30</td><td>📖 Reading for pleasure</td><td>Any book she loves</td></tr>
+                        <tr><td>8:30–9:00</td><td>Wind down</td><td></td></tr>
+                        <tr><td>9:00–9:30</td><td>💤 Lights out</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="info-box">
+            📋 <strong>Activity summary:</strong> 🎹 Piano Tue 6pm · 🇨🇳 Mandarin Wed 4:20 · 🎻 Cello Thu 6:30 · 🏊 Swim Fri 5:30 · ⛪ Church Sun 9am · 📝 Practice test Sat 9am
+        </div>
+    </div>
+
+    <!-- ===================== NAPLAN TAB ===================== -->
+    <div id="naplan" class="tab-content">
+        <div class="countdown">
+            <h3>📝 NAPLAN Year 5 — March 2026</h3>
+            <div class="days" id="countdown-days">~4</div>
+            <div class="sublabel">weeks to go (approx. mid-March)</div>
+        </div>
+
+        <div class="info-box danger">
+            🚨 <strong>NAPLAN is SOON!</strong> Since 2023, NAPLAN is held in Term 1, around mid-March. That's roughly 4 weeks away.
+            Focus prep on her <strong>weakest area: Numeracy</strong>. Reading &amp; Conventions are her strengths — maintain, don't cram.
+        </div>
+
+        <div class="section-header purple">📊 NAPLAN Year 5 — Four Test Areas</div>
+        <div class="naplan-grid">
+            <div class="naplan-card">
+                <h4>📖 Reading</h4>
+                <div class="status strong">✅ Her Strength</div>
+                <p><strong>~35 questions, 65 min</strong></p>
+                <ul>
+                    <li>Locate directly stated information</li>
+                    <li>Make inferences from text</li>
+                    <li>Interpret figurative language</li>
+                    <li>Analyse author's purpose</li>
+                    <li>Connect ideas across texts</li>
+                </ul>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--green);"><strong>Strategy:</strong> 1x practice per week. Focus on timing, not content.</p>
+            </div>
+            <div class="naplan-card">
+                <h4>✏️ Conventions</h4>
+                <div class="status strong">✅ Her Strength</div>
+                <p><strong>~55 questions, 45 min</strong></p>
+                <ul>
+                    <li>Spelling (common &amp; tricky words)</li>
+                    <li>Grammar (sentence structure)</li>
+                    <li>Punctuation (commas, apostrophes)</li>
+                </ul>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--green);"><strong>Strategy:</strong> Light maintenance. 1x practice per week. She's already strong here.</p>
+            </div>
+            <div class="naplan-card">
+                <h4>📝 Writing</h4>
+                <div class="status" style="background: var(--orange-bg); color: #d35400;">📈 Build</div>
+                <p><strong>1 task, 42 min</strong></p>
+                <ul>
+                    <li>Persuasive OR Narrative essay</li>
+                    <li>Target: 300–400 words</li>
+                    <li>Structure: Intro → Body → Conclusion</li>
+                    <li>Use PEEL paragraphs (persuasive)</li>
+                    <li>Show, don't tell (narrative)</li>
+                </ul>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);"><strong>Strategy:</strong> 1x timed writing per week (Wed). Practice both text types.</p>
+            </div>
+            <div class="naplan-card" style="border: 2px solid var(--red);">
+                <h4>🔢 Numeracy</h4>
+                <div class="status needs-work">⚠️ Focus Area</div>
+                <p><strong>~40 questions, 65 min</strong></p>
+                <ul>
+                    <li>Number &amp; place value (millions)</li>
+                    <li>Fractions &amp; decimals</li>
+                    <li>Multiplication &amp; division</li>
+                    <li>Area, perimeter, volume</li>
+                    <li>Time (24-hr, elapsed)</li>
+                    <li>Angles &amp; geometry</li>
+                    <li>Data &amp; probability</li>
+                    <li>Patterns &amp; algebra</li>
+                </ul>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--red);"><strong>Strategy:</strong> DAILY practice. 30 min IXL + 30 min workbook. See Maths Boost tab.</p>
+            </div>
+        </div>
+
+        <div class="section-header green">📅 4-Week NAPLAN Sprint Plan</div>
+        <table>
+            <thead><tr><th>Week</th><th>Maths Focus</th><th>Writing Focus</th><th>Reading/Conv</th><th>Saturday Test</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Week 1</strong><br>17-21 Feb</td><td>Fractions &amp; decimals. IXL daily. Equivalent fractions, ordering, adding.</td><td>Persuasive essay: structure (PEEL). One timed practice (25 min).</td><td>1x reading passage + questions.</td><td>Full NAPLAN Numeracy practice test (timed 65 min)</td></tr>
+                <tr><td><strong>Week 2</strong><br>24-28 Feb</td><td>Multiplication &amp; division. Times tables speed. 2-digit × 2-digit.</td><td>Narrative essay: Show don't tell, strong opening. One timed practice.</td><td>1x conventions quiz (spelling/grammar).</td><td>Full NAPLAN Reading + Writing test</td></tr>
+                <tr><td><strong>Week 3</strong><br>3-7 Mar</td><td>Measurement: area, perimeter, volume, time. Word problems.</td><td>Practice both: persuasive + narrative (choose under pressure).</td><td>1x reading passage. Time yourself.</td><td>Full NAPLAN Numeracy practice test</td></tr>
+                <tr class="highlight-row"><td><strong>Week 4</strong><br>10-14 Mar</td><td>Mixed review. Focus on weakest topics from practice tests. Light practice only.</td><td>Review best writing pieces. No new teaching — build confidence.</td><td>Light review only.</td><td><strong>REST.</strong> Light revision + early night. NAPLAN WEEK!</td></tr>
+            </tbody>
+        </table>
+
+        <div class="info-box success">
+            💡 <strong>NAPLAN tips:</strong> Get good sleep the week before. Eat well. If she doesn't know an answer, skip and come back. Reading &amp; conventions are her strengths — do those first to build confidence. Save numeracy questions she's unsure of for the end.
+        </div>
+    </div>
+
+    <!-- ===================== SCHOLARSHIP TAB ===================== -->
+    <div id="scholarship" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: var(--purple);">🏫 Private School Scholarship Prep</h2>
+
+        <div class="info-box">
+            🎯 <strong>Timeline:</strong> Most Sydney private school scholarship exams for Year 7 entry are held between <strong>February and June of Year 5</strong>.
+            Some schools test in Year 6 (Feb-March). Check each school's specific dates!
+        </div>
+
+        <div class="section-header purple">🎓 Common Scholarship Test Formats</div>
+        <table>
+            <thead><tr><th>Provider</th><th>Used By</th><th>What They Test</th><th>Duration</th></tr></thead>
+            <tbody>
+                <tr><td><strong>ACER</strong></td><td>Many private schools (Knox, Barker, Cranbrook, SCEGGS, etc.)</td><td>Maths, Reading, Writing, Abstract Reasoning</td><td>~3 hours total</td></tr>
+                <tr><td><strong>EduTest</strong></td><td>Some private schools</td><td>Verbal Reasoning, Quantitative Reasoning, Reading, Maths, Writing</td><td>~3 hours total</td></tr>
+                <tr><td><strong>School-specific</strong></td><td>Individual schools</td><td>Varies — usually English, Maths, Interview</td><td>Varies</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header pink">📐 What Scholarship Tests Cover (Beyond NAPLAN)</div>
+        <div class="naplan-grid">
+            <div class="naplan-card">
+                <h4>🧠 General Ability</h4>
+                <p>NOT taught in school — must be specifically practiced.</p>
+                <ul>
+                    <li><strong>Verbal reasoning:</strong> analogies, synonyms, antonyms, word patterns</li>
+                    <li><strong>Numerical reasoning:</strong> number patterns, sequences, logic puzzles</li>
+                    <li><strong>Abstract reasoning:</strong> shape patterns, spatial rotation, matrices</li>
+                </ul>
+            </div>
+            <div class="naplan-card">
+                <h4>✍️ Extended Writing</h4>
+                <p>More demanding than NAPLAN — need sophisticated vocabulary.</p>
+                <ul>
+                    <li>Persuasive essays with evidence</li>
+                    <li>Creative narratives with character development</li>
+                    <li>Strong vocabulary &amp; varied sentence structure</li>
+                    <li>Typically 30-40 min, 400-600 words</li>
+                </ul>
+            </div>
+            <div class="naplan-card">
+                <h4>📐 Advanced Maths</h4>
+                <p>Harder than NAPLAN — multi-step problems.</p>
+                <ul>
+                    <li>Multi-step word problems</li>
+                    <li>Fractions, decimals, percentages</li>
+                    <li>Algebra &amp; patterns</li>
+                    <li>Geometry &amp; measurement</li>
+                    <li>Speed &amp; accuracy under pressure</li>
+                </ul>
+            </div>
+            <div class="naplan-card">
+                <h4>🎤 Interview (some schools)</h4>
+                <p>Some schools include an interview for shortlisted candidates.</p>
+                <ul>
+                    <li>Why this school?</li>
+                    <li>What are your interests/achievements?</li>
+                    <li>Current affairs awareness</li>
+                    <li>Communication skills, maturity</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-header green">📅 Scholarship Prep Weekly Plan</div>
+        <table>
+            <thead><tr><th>Day</th><th>Scholarship Activity</th><th>Duration</th><th>Resource</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Mon</strong></td><td>Maths: Scholarship-level word problems</td><td>30 min</td><td>Excel Selective &amp; Scholarship Tests — Maths</td></tr>
+                <tr><td><strong>Tue</strong></td><td>Reading comprehension (higher level)</td><td>30 min</td><td>NAPLAN-style + harder passages</td></tr>
+                <tr><td><strong>Wed</strong></td><td>Writing: Timed persuasive OR narrative</td><td>30 min</td><td>NAPLAN + scholarship writing prompts</td></tr>
+                <tr><td><strong>Thu</strong></td><td>General Ability: Verbal + numerical + abstract</td><td>30 min</td><td>Excel GA Practice Tests / James An's</td></tr>
+                <tr><td><strong>Fri</strong></td><td>REST — Friday is light day</td><td>—</td><td>No scholarship prep on Friday</td></tr>
+                <tr class="highlight-row"><td><strong>Sat</strong></td><td>Full timed practice test</td><td>60 min</td><td>Alternate: NAPLAN numeracy / scholarship test</td></tr>
+                <tr><td><strong>Sun</strong></td><td>Review Saturday mistakes</td><td>15-30 min</td><td>Error journal — note patterns in mistakes</td></tr>
+            </tbody>
+        </table>
+
+        <div class="info-box success">
+            💡 <strong>Key insight:</strong> She's strong in English — this is her competitive advantage for scholarships. Most students are strong in maths but weaker in writing.
+            If we can boost her maths to "solid" while keeping English "excellent," she's a strong scholarship candidate.
+        </div>
+    </div>
+
+    <!-- ===================== MATHS BOOST TAB ===================== -->
+    <div id="maths" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: var(--red);">🔢 Maths Boost Plan — From "Not Strong" to Confident</h2>
+
+        <div class="info-box danger">
+            📊 <strong>Goal:</strong> Move maths from "not strong" to "solid" within 2 terms. Daily practice (30 min IXL + 30 min workbook on study days).
+            This is a marathon, not a sprint. Celebrate small wins!
+        </div>
+
+        <div class="section-header purple">📐 Year 5 NAPLAN Maths Topics — Priority Order</div>
+        <p style="margin: 0.5rem 0 1rem; color: var(--text-light);">Ordered by how often they appear in NAPLAN + scholarship tests. Focus on red items first.</p>
+        <table>
+            <thead><tr><th>#</th><th>Topic</th><th>Priority</th><th>IXL Section</th><th>Weekly Time</th></tr></thead>
+            <tbody>
+                <tr style="background: #fdedec;"><td>1</td><td><strong>Fractions &amp; decimals</strong></td><td>🔴 HIGH</td><td>Year 5 → Fractions</td><td>3x 15 min</td></tr>
+                <tr style="background: #fdedec;"><td>2</td><td><strong>Multiplication &amp; division</strong></td><td>🔴 HIGH</td><td>Year 5 → Multiply/Divide</td><td>3x 15 min</td></tr>
+                <tr style="background: #fdedec;"><td>3</td><td><strong>Word problems</strong></td><td>🔴 HIGH</td><td>Year 5 → Word problems</td><td>2x 15 min</td></tr>
+                <tr style="background: var(--orange-bg);"><td>4</td><td><strong>Measurement (area, perimeter)</strong></td><td>🟠 MED</td><td>Year 5 → Measurement</td><td>2x 15 min</td></tr>
+                <tr style="background: var(--orange-bg);"><td>5</td><td><strong>Time (24-hr, elapsed)</strong></td><td>🟠 MED</td><td>Year 5 → Time</td><td>1x 15 min</td></tr>
+                <tr style="background: var(--orange-bg);"><td>6</td><td><strong>Geometry &amp; angles</strong></td><td>🟠 MED</td><td>Year 5 → Geometry</td><td>1x 15 min</td></tr>
+                <tr><td>7</td><td><strong>Place value (millions)</strong></td><td>🟡 LOW</td><td>Year 5 → Place value</td><td>1x 15 min</td></tr>
+                <tr><td>8</td><td><strong>Data &amp; probability</strong></td><td>🟡 LOW</td><td>Year 5 → Statistics</td><td>1x 15 min</td></tr>
+                <tr><td>9</td><td><strong>Patterns &amp; algebra</strong></td><td>🟡 LOW</td><td>Year 5 → Patterns</td><td>1x 15 min</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header green">🧮 Daily Maths Routine (30 min)</div>
+        <table>
+            <thead><tr><th>Step</th><th>Time</th><th>What</th><th>How</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>5 min</td><td><strong>Times tables speed drill</strong></td><td>Start with 2s, 5s, 10s → build to 3s, 4s, 6s, 7s, 8s, 9s. Use IXL "Multiplication facts" or flash cards.</td></tr>
+                <tr><td>2</td><td>15 min</td><td><strong>IXL Year 5 Maths</strong></td><td>Focus on ONE topic per session (see priority list above). Don't jump around.</td></tr>
+                <tr><td>3</td><td>10 min</td><td><strong>Word problem</strong></td><td>One multi-step word problem from workbook. Read it twice, underline key info, show working.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header pink">💪 Confidence-Building Rules</div>
+        <div style="background: var(--card-bg); border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <ol style="padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.6rem;"><strong>Start with what she CAN do.</strong> Begin each session with 2-3 easy questions to build confidence.</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Praise effort, not results.</strong> "You worked so hard on that!" not "You got it right!"</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Mistakes are data, not failures.</strong> Wrong answers tell us what to learn next.</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Make it real.</strong> Cooking, shopping, measuring — maths is everywhere.</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Never say "I was bad at maths too."</strong> Maths anxiety is learned. Keep it positive.</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Use Khan Academy videos</strong> for topics she finds hard. Watch the 5 min video, then practice.</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Track progress visually.</strong> Use IXL skill scores. Celebrate when a topic hits 80%+.</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Stop after 30 min.</strong> Even if she hasn't finished. Maths fatigue makes things worse.</li>
+            </ol>
+        </div>
+
+        <div class="info-box success">
+            🎯 <strong>Realistic timeline:</strong> With daily practice, expect to see confidence improvement in 4-6 weeks.
+            NAPLAN Band 7-8 (Year 5 proficient) is achievable by March with focused effort on the top 3 priority topics.
+        </div>
+    </div>
+
+    <!-- ===================== RESOURCES TAB ===================== -->
+    <div id="resources" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: var(--purple);">📚 Resources — What to Buy, Borrow &amp; Use</h2>
+
+        <div class="section-header purple">🛒 Priority 1: Buy This Week (NAPLAN in ~4 weeks!)</div>
+        <table>
+            <thead><tr><th>Resource</th><th>Price</th><th>Where</th><th>Why</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>Excel NAPLAN-style Tests Year 5 — Numeracy</strong></td><td>~$10</td><td>Big W, Newsagent, Booktopia</td><td>Practice tests matching NAPLAN format — her weak area</td></tr>
+                <tr><td><strong>Excel NAPLAN-style Tests Year 5 — Reading</strong></td><td>~$10</td><td>Big W, Newsagent</td><td>Maintain reading strength with timed practice</td></tr>
+                <tr><td><strong>Excel NAPLAN-style Tests Year 5 — Language Conventions</strong></td><td>~$10</td><td>Big W, Newsagent</td><td>Grammar &amp; spelling maintenance</td></tr>
+                <tr><td><strong>Excel Mental Maths Year 5</strong></td><td>~$8</td><td>Big W, Newsagent</td><td>Daily 10-min maths exercises — builds speed</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header pink">🛒 Priority 2: Buy Within 2 Weeks (Scholarship Prep)</div>
+        <table>
+            <thead><tr><th>Resource</th><th>Price</th><th>Where</th><th>Why</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>Excel Selective Schools &amp; Scholarship Tests</strong></td><td>~$15</td><td>Big W, Booktopia</td><td>Full practice tests in scholarship format</td></tr>
+                <tr><td><strong>James An's Practice Tests (Maths/GA)</strong></td><td>~$25</td><td>Booktopia, Amazon AU</td><td>Widely used, harder-than-NAPLAN questions</td></tr>
+                <tr><td><strong>Excel General Ability Tests Year 5-6</strong></td><td>~$12</td><td>Big W, Newsagent</td><td>Verbal, numerical, abstract reasoning practice</td></tr>
+                <tr><td><strong>ICAS Past Papers (Maths)</strong></td><td>~$15</td><td>icasassessments.com</td><td>Higher-level problem-solving maths questions</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header green">📱 Apps &amp; Online Resources</div>
+        <table>
+            <thead><tr><th>Resource</th><th>Cost</th><th>How to Use</th><th>Focus</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>IXL Year 5</strong></td><td>Already subscribed!</td><td>30 min/day (Mon-Thu) — focus on maths weak topics</td><td>Maths: fractions, multiplication, word problems</td></tr>
+                <tr><td><strong>Khan Academy Year 5</strong></td><td>Free</td><td>Watch videos for topics she finds hard, then practice</td><td>Maths concept explanations, step-by-step</td></tr>
+                <tr><td><strong>NAPLAN Practice (NAP website)</strong></td><td>Free</td><td>nap.edu.au — official practice tests</td><td>All 4 NAPLAN areas — use for Saturday tests</td></tr>
+                <tr><td><strong>BBC Bitesize KS2 Maths</strong></td><td>Free</td><td>bbc.co.uk/bitesize — clear explanations</td><td>Maths topics explained simply with games</td></tr>
+                <tr><td><strong>Mathopolis</strong></td><td>Free</td><td>mathopolis.com — game-based practice</td><td>Fun maths games for fractions, decimals, times tables</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-header blue">📖 Books for Pleasure Reading (Keep Her Love of Reading!)</div>
+        <div class="info-box success">
+            📖 She's a strong reader — keep feeding that! Let her choose books she loves. Reading for pleasure builds vocabulary, comprehension, and writing skills naturally.
+        </div>
+        <table>
+            <thead><tr><th>Book / Series</th><th>Why</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Harry Potter</strong> — J.K. Rowling</td><td>Rich vocabulary, complex plots, 400+ page stamina</td></tr>
+                <tr><td><strong>Percy Jackson</strong> — Rick Riordan</td><td>Mythology, adventure, engaging for Year 5</td></tr>
+                <tr><td><strong>Roald Dahl Collection</strong></td><td>Witty language, creative writing inspiration</td></tr>
+                <tr><td><strong>Wonder</strong> — R.J. Palacio</td><td>Empathy, perspective, beautiful writing</td></tr>
+                <tr><td><strong>The One and Only Ivan</strong></td><td>Figurative language, inference, award-winning</td></tr>
+                <tr><td><strong>Hatchet</strong> — Gary Paulsen</td><td>Survival story, problem-solving, engaging</td></tr>
+                <tr><td><strong>Tomorrow When the War Began</strong> (if mature)</td><td>Australian classic, advanced reading level</td></tr>
+                <tr><td><strong>Non-fiction: Nat Geo, DK, Horrible Histories</strong></td><td>Builds general knowledge for scholarship interviews</td></tr>
+            </tbody>
+        </table>
+
+        <div class="summary-card">
+            💰 Budget estimate: ~$80-100 for essential workbooks. IXL already subscribed. Khan Academy &amp; NAPLAN practice free. Library for reading books!
+        </div>
+    </div>
+
+    <!-- ===================== PRINT TAB ===================== -->
+    <div id="fridge" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: var(--purple);">🖨️ Print-Friendly Fridge Card</h2>
+        <p style="margin-bottom: 1rem;">Click the button below then print (Ctrl+P). Only the fridge card will print.</p>
+        <button class="print-btn" onclick="window.print()">🖨️ Print Fridge Card</button>
+
+        <div class="fridge-card">
+            <h3>📝 DAUGHTER — Year 5 Schedule</h3>
+            <strong>NAPLAN + Scholarship Prep · Focus: MATHS</strong><br><br>
+            <strong>── AFTER SCHOOL ──</strong><br>
+            3:30 &nbsp; 🍎 Snack<br>
+            4:00 &nbsp; 📝 Homework (30 min)<br>
+            4:30 &nbsp; 📱 IXL Maths Year 5 (30 min)<br>
+            5:00 &nbsp; 🎵 Music practice (20 min)<br>
+            5:20 &nbsp; Free time / play<br><br>
+            <strong>── SPECIAL DAYS ──</strong><br>
+            Tue &nbsp; 🎹 Piano 6:00 PM (Dad)<br>
+            Wed &nbsp; 🇨🇳 Mandarin 4:20 PM<br>
+            Thu &nbsp; 🎻 Cello 6:30 PM (Dad)<br>
+            Fri &nbsp; 🏊 Swimming 5:30 PM<br><br>
+            <strong>── EVENING (with parents) ──</strong><br>
+            6:00 &nbsp; 🍽️ Dinner<br>
+            6:30 &nbsp; 📐 Study block (30 min)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mon: Maths workbook<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tue: Reading comp (after piano)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Wed: Writing + IXL Maths<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thu: General Ability (before cello)<br>
+            7:00 &nbsp; Free time / reading<br>
+            8:00 &nbsp; Get ready for bed<br>
+            8:30 &nbsp; 📖 Reading in bed<br>
+            9:00 &nbsp; 💤 Lights out (9:30 latest)<br><br>
+            <strong>── WEEKEND ──</strong><br>
+            Sat 9am &nbsp; 📝 Practice test (1 hr)<br>
+            Sun 9am &nbsp; ⛪ Church<br><br>
+            <strong>DAILY MATHS: 5m tables + 15m IXL</strong><br>
+            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 10m word problem</strong>
+        </div>
+
+        <div class="section-header purple" style="margin-top: 2rem;">📊 Weekly Study Summary</div>
+        <table>
+            <thead><tr><th>Activity</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Total</th></tr></thead>
+            <tbody>
+                <tr><td>📝 Homework</td><td>30m</td><td>30m</td><td>20m</td><td>30m</td><td>30m</td><td>—</td><td>—</td><td><strong>2h 20m</strong></td></tr>
+                <tr><td>📱 IXL Maths</td><td>30m</td><td>30m</td><td>30m</td><td>30m</td><td>—</td><td>—</td><td>—</td><td><strong>2h</strong></td></tr>
+                <tr><td>📐 Study block</td><td>30m</td><td>30m</td><td>30m</td><td>30m</td><td>—</td><td>—</td><td>—</td><td><strong>2h</strong></td></tr>
+                <tr><td>📝 Practice test</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>90m</td><td>15m</td><td><strong>1h 45m</strong></td></tr>
+                <tr><td>🎵 Music practice</td><td>20m</td><td>30m</td><td>20m</td><td>30m</td><td>—</td><td>30m</td><td>20m</td><td><strong>2h 30m</strong></td></tr>
+                <tr><td>🎹🎻 Music lessons</td><td>—</td><td>45m</td><td>—</td><td>45m</td><td>—</td><td>—</td><td>—</td><td><strong>1h 30m</strong></td></tr>
+                <tr><td>🇨🇳 Mandarin</td><td>—</td><td>—</td><td>50m</td><td>—</td><td>—</td><td>—</td><td>—</td><td><strong>50m</strong></td></tr>
+                <tr><td>🏊 Swimming</td><td>—</td><td>—</td><td>—</td><td>—</td><td>45m</td><td>—</td><td>—</td><td><strong>45m</strong></td></tr>
+                <tr><td>⛪ Church</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>90m</td><td><strong>1h 30m</strong></td></tr>
+                <tr class="highlight-row"><td><strong>TOTAL</strong></td><td><strong>1h50</strong></td><td><strong>2h45</strong></td><td><strong>2h30</strong></td><td><strong>2h45</strong></td><td><strong>1h15</strong></td><td><strong>2h</strong></td><td><strong>2h05</strong></td><td><strong>~15 hrs</strong></td></tr>
+            </tbody>
+        </table>
+        <p style="margin-top: 0.5rem; color: var(--text-light); font-size: 0.85rem;">
+            Academic study only: ~8 hrs/week. Music: ~4 hrs/week. Activities: ~3 hrs/week. Plenty of free time built in!
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    <p>📝 Year 5 — NAPLAN &amp; Scholarship Prep · Sydney NSW</p>
+    <p><a href="index.html" style="color: var(--primary-light);">← Home</a> · <a href="family-calendar.html" style="color: var(--primary-light);">👨‍👩‍👧‍👦 Family Calendar</a> · <a href="schedule.html" style="color: var(--primary-light);">📅 Brother's Schedule</a></p>
+</footer>
+
+<script>
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
